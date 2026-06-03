@@ -27,6 +27,10 @@ in {
       enable = true; # set this so desktop file is created
       withUWSM = false;
     };
+    # Niri session kept alongside Hyprland (pick at login screen).
+    # This installs niri, registers the wayland session for LY/SDDM,
+    # and wires niri-scoped portals (gnome+gtk) + gnome-keyring.
+    niri.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;

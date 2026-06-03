@@ -33,6 +33,15 @@
    monitor = Virtual-1,1920x1080@60,auto,1
     ";
 
+  # Niri output (monitor) layout in KDL. Leave "" to let niri auto-detect.
+  # Example:
+  #   output "DP-1" {
+  #       mode "2560x1440@59.95"
+  #       scale 1.0
+  #       position x=0 y=0
+  #   }
+  niriOutputs = "";
+
   # Bar/Shell Settings
   # Choose between noctalia or waybar
   barChoice = "noctalia";

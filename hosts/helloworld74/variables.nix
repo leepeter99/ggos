@@ -35,6 +35,22 @@
     monitor=HDMI-A-1,2560x1440@59.95,0x0,1.0
     monitor=HDMI-A-1,transform,1";
 
+  # Niri output (monitor) layout in KDL. Mirrors extraMonitorSettings above.
+  # Leave as "" to let niri auto-detect. transform "90" == hyprland transform,1.
+  niriOutputs = ''
+    output "DP-1" {
+        mode "2560x1440@59.95"
+        scale 1.0
+        position x=1440 y=412
+    }
+    output "HDMI-A-1" {
+        mode "2560x1440@59.95"
+        scale 1.0
+        transform "90"
+        position x=0 y=0
+    }
+  '';
+
   # Bar/Shell Settings
   # Choose between noctalia or waybar
   barChoice = "noctalia";

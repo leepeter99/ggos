@@ -40,6 +40,7 @@ in {
       ./gtk.nix
       ./cli/htop.nix
       ./hyprland
+      ./niri
       ./terminals/kitty.nix
       ./cli/lazygit.nix
       ./obs-studio.nix
