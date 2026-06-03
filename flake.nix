@@ -7,8 +7,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nvf.url = "github:notashelf/nvf";
-    stylix.url = "github:danth/stylix/master";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:danth/stylix/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # nix-flatpak declares no nixpkgs input, so nothing to follow.
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
     noctalia = {
