@@ -1,3 +1,4 @@
+``
 {host, ...}: let
   vars = import ../../../hosts/${host}/variables.nix;
   inherit
@@ -52,33 +53,41 @@ in {
         # ============= TERMINALS =============
         "$modifier,Return, Terminal, exec, ${terminal}"
         # ============= APPLICATION LAUNCHERS =============
-        "$modifier,K, Keybinds Search Tool, exec, qs-keybinds"
-        "$modifier CTRL,C, Cheatsheets Viewer, exec, qs-cheatsheets"
-        "$modifier SHIFT,K, Keybinds Search Tool, exec, qs-keybinds"
-        "$modifier SHIFT,D, Discord, exec, discord"
-        "$modifier ALT,W, Web Search, exec, web-search"
-        "$modifier SHIFT,W, QS Wallpaper Setter, exec, qs-wallpapers-apply"
-        "$modifier SHIFT,N, Notification Reset, exec, swaync-client -rs"
+        "$modifier,B, Brave Browser, exec, brave"
+        "$modifier,G, GIMP, exec, gimp"
+        "$modifier,O, OBS Studio, exec, obs"
+        "$modifier,T, Thunar, exec, thunar"
         "$modifier,W, Web Browser, exec, ${browser}"
-        "$modifier,Y, File Manager, exec, kitty -e yazi"
+        "$modifier,Y, File Manager, exec, rio -e yazi"
+        "$modifier,Z, Zoom, exec, zoom-us"
+        "$modifier CTRL,I, Cursor IDE, exec, cursor"
+        "$modifier SHIFT,D, Discord, exec, discord"
+        "$modifier SHIFT,M, Spotify, exec, spotify"
+        "$modifier SHIFT,T, Dropdown Terminal, exec, sh -lc 'DropTerminal'"
+        "$modifier CTRL,W, Windsurf IDE, exec, windsurf"
+        # ============= WINDOW UTILITY =============
         "$modifier,E, Emoji Picker, exec, emopicker9000"
-        "$modifier,S, Screenshot, exec, screenshootin"
+        "$modifier,K, Keybinds Search Tool, exec, qs-keybinds"
+        "$modifier SHIFT,B, Bluetooth Manager, exec, blueman-manager"
+        "$modifier SHIFT,N, Notification Reset, exec, swaync-client -rs"
+        "$modifier SHIFT,K, Keybinds Search Tool, exec, qs-keybinds"
+        "$modifier SHIFT,W, QS Wallpaper Setter, exec, qs-wallpapers-apply"
+        "$modifier ALT,C, Color Picker, exec, hyprpicker -a"
+        "$modifier ALT,M, Audio Control, exec, pavucontrol"
+        "$modifier ALT,W, Web Search, exec, web-search"
+        "$modifier CTRL,C, Cheatsheets Viewer, exec, qs-cheatsheets"
         # ============= SCREENSHOTS =============
         "$modifier CTRL,S, Screenshot Output, exec, hyprshot -m output -o $HOME/Pictures/ScreenShots"
+        "$modifier,S, Screenshot, exec, screenshootin"
         "$modifier SHIFT,S, Screenshot Window, exec, hyprshot -m window -o $HOME/Pictures/ScreenShots"
         "$modifier ALT,S, Screenshot Region, exec, hyprshot -m region -o $HOME/Pictures/ScreenShots"
-        "$modifier,O, OBS Studio, exec, obs"
-        "$modifier ALT,C, Color Picker, exec, hyprpicker -a"
-        "$modifier,G, GIMP, exec, gimp"
-        "$modifier SHIFT,T, Dropdown Terminal, exec, sh -lc 'DropTerminal'"
-        "$modifier,T, Thunar, exec, thunar"
-        "$modifier ALT,M, Audio Control, exec, pavucontrol"
         # ============= WINDOW MANAGEMENT =============
         "$modifier,Q, Kill Active Window, killactive,"
         "$modifier,P, Pseudo Tile, pseudo,"
         "$modifier SHIFT,I, Toggle Split, layoutmsg, togglesplit"
         "$modifier,F, Maximize, fullscreen,"
         "$modifier SHIFT,F, Toggle Floating, togglefloating,"
+        "$modifier SHIFT,P, Logout Menu, exec, wlogout"
         "$modifier ALT,F, Float All Windows, exec, hyprland-float-all"
         # ============= LAYOUTS =============
         "$modifier ALT,L, Toggle Layouts, exec, hyprland-change-layout toggle"
