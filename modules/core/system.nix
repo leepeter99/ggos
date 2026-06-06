@@ -29,7 +29,7 @@ in {
   };
   environment.variables = {
     NIXOS_OZONE_WL = "1";
-    GGOS_VERSION = "2.6.1";
+    GGOS_VERSION = "2.6.2";
     GGOS = "true";
   };
   console.keyMap = "${consoleKeyMap}";
