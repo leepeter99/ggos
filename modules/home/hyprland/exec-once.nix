@@ -24,8 +24,8 @@
       "killall -q waybar;sleep .5 && waybar"
       "killall -q swaync;sleep .5 && swaync"
       "nm-applet --indicator"
-      # Delayed-only restore so Stylix finishes first, then user's wallpaper wins with a single change
-      "sh -lc 'sleep 2 && (qs-wallpapers-restore || waypaper --wallpaper ${stylixImage} --backend awww) >/dev/null 2>&1 || true'"
+      # Restore a picker-selected wallpaper when available; otherwise apply the host default.
+      "sh -lc 'sleep 2 && (qs-wallpapers-restore || waypaper --wallpaper \"${stylixImage}\" --backend awww) >/dev/null 2>&1 || true'"
     ]
     else [];
 in {

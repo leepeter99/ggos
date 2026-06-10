@@ -53,7 +53,7 @@
 
   # Bar/Shell Settings
   # Choose between noctalia or waybar
-  barChoice = "noctalia";
+  barChoice = "waybar";
 
   # Waybar Settings (used when barChoice = "waybar")
   clock24h = true;
@@ -114,8 +114,8 @@
   # Default background
   # Add new images to ~/ggos/wallpapers
   #stylixImage = ../../wallpapers/mountainscapedark.jpg;
-  stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
-  #stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
+  #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
+  stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
   #stylixImage = ../../wallpapers/Rainnight.jpg;
   #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
   #stylixImage = ../../wallpapers/nix-wallpaper-stripes-logo.png;
@@ -130,7 +130,7 @@
   #waybarChoice = ../../modules/home/waybar/waybar-dwm.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-dwm-2.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-nekodyke.nix;
-  #waybarChoice = ../../modules/home/waybar/waybar-jerry.nix;
+  waybarChoice = ../../modules/home/waybar/waybar-jerry.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-TheBlackDon.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-tony.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-ddubsos-v1.nix;
@@ -142,7 +142,7 @@
   #waybarChoice = ../../modules/home/waybar/waybar-jwt-transparent.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jwt-ultradark.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-pctrade-catppuccin.nix;
-  waybarChoice = ../../modules/home/waybar/waybar-mangowc-jak-catppuccin.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-mangowc-jak-catppuccin.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-old-ddubsos.nix;
 
   # Set Animation style

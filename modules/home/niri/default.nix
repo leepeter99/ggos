@@ -10,6 +10,7 @@
     (vars)
     barChoice
     browser
+    stylixImage
     terminal
     ;
   keyboardLayout = vars.keyboardLayout or "us";
@@ -22,7 +23,7 @@
 
   variantLine =
     if keyboardVariant != ""
-    then ''            variant "${keyboardVariant}"''
+    then "            variant \"${keyboardVariant}\""
     else "";
 
   # Bar/launcher wiring mirrors the hyprland module's barChoice branching.
@@ -37,7 +38,7 @@
     spawn-at-startup "sh" "-c" "killall -q waybar; sleep .5 && waybar"
     spawn-at-startup "sh" "-c" "killall -q swaync; sleep .5 && swaync"
     spawn-at-startup "nm-applet" "--indicator"
-    spawn-at-startup "sh" "-lc" "sleep 2 && (qs-wallpapers-restore || true) >/dev/null 2>&1 || true"
+    spawn-at-startup "sh" "-lc" "sleep 2 && (qs-wallpapers-restore || waypaper --wallpaper \"${stylixImage}\" --backend awww) >/dev/null 2>&1 || true"
   '';
 
   noctaliaBinds = lib.optionalString isNoctalia ''
@@ -154,8 +155,8 @@
     ${noctaliaBinds}${rofiBinds}
         Mod+Return           { spawn "${terminal}"; }
         Mod+W                { spawn "${browser}"; }
-        Mod+K                { spawn "qs-keybinds"; }
-        Mod+Shift+K          { spawn "qs-keybinds"; }
+        Mod+Alt+K            { spawn "qs-keybinds"; }
+        Mod+Alt+Shift+K      { spawn "qs-keybinds"; }
         Mod+Ctrl+C          { spawn "qs-cheatsheets"; }
         Mod+Shift+D          { spawn "discord"; }
         Mod+Alt+W            { spawn "web-search"; }
