@@ -9,7 +9,6 @@ in {
         QT_QPA_PLATFORM "wayland;xcb"
         QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
         QT_AUTO_SCREEN_SCALE_FACTOR "1"
-        GDK_BACKEND "wayland,x11"
         CLUTTER_BACKEND "wayland"
         MOZ_ENABLE_WAYLAND "1"
         ELECTRON_OZONE_PLATFORM_HINT "wayland"
@@ -19,7 +18,6 @@ in {
         EDITOR "nvim"
         TERMINAL "${terminal}"
         XDG_TERMINAL_EMULATOR "${terminal}"
-        DISPLAY ":0"
     }
   '';
 }

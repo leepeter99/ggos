@@ -28,7 +28,6 @@ in {
     spawn-at-startup "sh" "-c" "wl-paste --type text --watch cliphist store"
     spawn-at-startup "sh" "-c" "wl-paste --type image --watch cliphist store"
     spawn-at-startup "sh" "-c" "systemctl --user start hyprpolkitagent"
-    spawn-at-startup "xwayland-satellite"
     spawn-at-startup "fcitx5" "-d"
     ${noctaliaStartup}${waybarStartup}
   '';

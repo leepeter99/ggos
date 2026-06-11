@@ -11,9 +11,19 @@
       #
       #export EDITOR="nvim"
       #export VISUAL="nvim"
+      export DIRENV_LOG_FORMAT= 
+      eval "$(direnv hook zsh)"
 
       #alias c="clear"
-
+      alias da="direnv allow"
+      alias dr="direnv reload"
+      alias ..="cd .."
+      alias ...="cd ../.."
+      alias ....="cd ../../.."
+      alias .....="cd ../../../.."
+      alias ......="cd ../../../../.."
+      alias .......="cd ../../../../../.."
+      alias ........="cd ../../../../../../.."
 
   '';
 }
