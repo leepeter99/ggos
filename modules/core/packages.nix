@@ -123,7 +123,7 @@ in {
       ### Development ###
       bash-language-server # Bash Language Server
       beautysh # Shell Formatter
-      devenv
+      devenv # For Creating Development Environment
       graphviz # Graph Visualization
       haskell-language-server # Haskell Language Server
       hlint # Haskell Linter

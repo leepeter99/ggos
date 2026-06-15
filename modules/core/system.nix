@@ -26,7 +26,7 @@ in {
       ];
 
       # Add trusted-users setting
-      trusted-users = ["root" "leepeter99"];
+      trusted-users = ["root" "helloworld74"];
 
       # for direnv GC roots
       keep-derivations = true;
