@@ -115,6 +115,7 @@ in {
       upower # noctalia shell battery
       uwsm # Universal Wayland Session Manager (optional must be enabled)
       v4l-utils # Used For Things Like OBS Virtual Camera
+      waybar # waybar
       waypaper # Change wallpaper
       wget # Tool For Fetching Files With Links
       yarn # JavaScipt Package Manager
