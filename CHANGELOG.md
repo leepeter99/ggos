@@ -1,11 +1,16 @@
-# 📋 ZaneyOS Changelog
+# 📋 GGOS Changelog
 
 > ** ✨ A comprehensive history of changes, improvements, and updates to
-> ZaneyOS**
+> GGOS**
 
 ---
+ 🚀 **Current Release - GGOS v2.6.3**
 
-# 🚀 **Current Release - ZaneyOS v2.6.2**
+- Fix  : bindings for noctalia-shell v5.0.0
+- Upd  : Flake URL for noctalia-shell
+- Added: Add niri window manager, rio terminal
+
+# 🚀 **Current Release - GGOS v2.6.2**
 
 - Fix: `nixvim` eval error regarding nixpkgs
   - Proper fix is add this to `nixvim.nix`
@@ -23,7 +28,7 @@
   ```
 
 - Fix: `kmscon` error
-  - `zaneyos/modules/core/stylix.nix`
+  - `GGos/modules/core/stylix.nix`
   - Added: `targets.kmscon.enable = false;`
     ```nix
     stylix = {
@@ -42,7 +47,7 @@
     - That build uses and `openssl v1.1.1w`
     - That ius OEL and marked insecure in NIXOS
     - Users can use an alternativve client until discord is updated
-- Disabled `zen browser` in `zaneyos/modules/home/default.nix`
+- Disabled `zen browser` in `GGos/modules/home/default.nix`
   - Needs to be migrated to being enabled via host variable
 - Changed from `zen` to `latest` kernel
   - Linux kernel v7.0 is much better than 6.19_zen
@@ -55,19 +60,19 @@
   - `git.signing.format` set to `null`
 - `nixvim` lualine theme set to `auto`
 - Changed to NixOS unstable branch
-- Ported `DropTerminal` from `KoolDots` to ZaneyOS
+- Ported `DropTerminal` from `KoolDots` to GGOS
   - Replaces pyprland and some python dependencies
 - Hyprland updated to v0.54
   - Added support for scrolling and monocle layouts
   - Fixed hyprland float-all bindings
   - Updated Window Rules for new Hyprland format
 - Disabled steam by default
-- Removed `adb.enable` no longer supported and not needed for ZaneyOS
+- Removed `adb.enable` no longer supported and not needed for GGOS
 - Changed `nixfmt-rfc-style` package for updated `nitfmt`
   - `nixfmt-rfc-style` no longer supported
 - Fixed other evaluation warnings with `Xorg` package changes
 
-# 🚀 **Current Release - ZaneyOS v2.6.0**
+# 🚀 **Current Release - GGOS v2.6.0**
 
 #### 📅 **Updated: April 3rd, 2026**
 
@@ -89,7 +94,7 @@
 - Removed `hyprpanel`
   - No longer maintained
     - Vendor created `wayle` to replace it
-    - Replaced in ZaneyOS with 'noctalia-shell'
+    - Replaced in GGOS with 'noctalia-shell'
 
 - `webkitgtk` being built from source
   - Removed audacity is called `wxwidgets`
@@ -116,9 +121,9 @@
   - Adjusted `noctalia-shell` bindings to match change
 - Default applications now settable
   - Globally for all hosts
-    - `zaneyos/modules/home/xdg.nix`
+    - `GGos/modules/home/xdg.nix`
   - Per host
-    - `zaneyos/hosts/HOSTNAME/variables.nix`
+    - `GGos/hosts/HOSTNAME/variables.nix`
       - Host settings override `xdg.nix` settings
 
 #### 📅 **Updated: January 23rd, 2026**
@@ -516,7 +521,7 @@
 - Added `alejandra` formatter to `flake.nix`
   - ran `nix fmt ./` and updated all files to current format spec
 - Added `alejandra` as default formatter in `nixvim.nix`
-- Hybrid GPU detection fails in `install-zaneyos.sh`
+- Hybrid GPU detection fails in `install-GGos.sh`
   - Should be `nvidia-laptop` not `hybrid`
     - Thanks to sasek @sasek333 for spotting this
 
@@ -571,7 +576,7 @@
   - Uses IPC for seamless integration with Hyprland
   - QML code managed via Home Manager activation script
 - FIXED: Username wasn't reliably being set in `flake.nix`
-- Set ZaneyOS to NixOS v25.11 stable branch
+- Set GGOS to NixOS v25.11 stable branch
 - Moved to `nixvim` for NeoVIM configuration
   - Works better
   - Fewer issues vs. `nvf.nix`
@@ -631,7 +636,7 @@
     enabled (required for RTX 50xx open kernel module)
   - New profile: `profiles/amd-hybrid/default.nix` (wires `amdgpuID`/`nvidiaID`
     from `hosts/<host>/variables.nix`)
-  - zcli detection updated to recognize `amd-hybrid`; `install-zaneyos.sh`
+  - zcli detection updated to recognize `amd-hybrid`; `install-GGos.sh`
     prompts include `amd-hybrid`
   - Added `amdgpuID` to `hosts/*/variables.nix`
   - Docs updated (`README`, `WARP.md`, cheatsheets)
@@ -676,16 +681,16 @@
 
 - As a result of this change, you can't just `git pull` and rebuild
 - The new variables and other changes will cause the build to fail
-- If you are on `zaneyos v2.3` read the upgrade documentation
+- If you are on `GGos v2.3` read the upgrade documentation
 - Began process to translate documents into Spanish (Machine translated)
 - README.es.md
 - FAQ.es.md
-- ZaneyOS-Upgrade.es.md
+- GGOS-Upgrade.es.md
 - TESTING-UPGRADE.es.md
 - UPGRADE-2.3-to-2.4.es.md
 - zcli.es.md
-- Added `~/zaneyos/cheatsheets/project-guide.md`
-- This is an overview of how ZaneyOS is laid out
+- Added `~/GGos/cheatsheets/project-guide.md`
+- This is an overview of how GGOS is laid out
 
 #### 📅 **Updated: August 21st, 2025**
 
@@ -724,12 +729,12 @@
 #### 📅 **Updated: August 19th, 2025**
 
 - 🔄 **Upgrade System Enhancement**: Comprehensive upgrade infrastructure for
-  ZaneyOS 2.3 → 2.4 migrations
+  GGOS 2.3 → 2.4 migrations
   - 🚀 **Automated Upgrade Script**: `upgrade-2.3-to-2.4.sh` with complete
     migration automation
     - 💾 **Complete Backup System**: Timestamped backups with organized storage
-      in `~/.config/zaneyos-backups/`
-    - 🔍 **Version Validation**: Automatic detection of ZaneyOS 2.3 vs 2.4+ to
+      in `~/.config/GGos-backups/`
+    - 🔍 **Version Validation**: Automatic detection of GGOS 2.3 vs 2.4+ to
       prevent incorrect upgrades
     - 🧬 **Variable Migration**: Comprehensive migration of 15+ configuration
       variables from 2.3 to 2.4 format
@@ -745,14 +750,14 @@
     `upgrade-2.3-to-2.4.sh --revert` for easy rollback
   - 📚 **Complete Documentation**: `UPGRADE-2.3-to-2.4.md` with detailed
     instructions and troubleshooting
-  - ⚠️ **Legacy Documentation**: Updated `ZaneyOS-Upgrade.md` to deprecate
+  - ⚠️ **Legacy Documentation**: Updated `GGOS-Upgrade.md` to deprecate
     manual process and redirect to automated system
   - 🔧 **Hardware Preservation**: Automatic migration of hardware.nix and
     host-specific configurations
   - 🎯 **User Experience**: Interactive prompts, colored output, progress
     indicators, and clear error messages
 
-- 🛠️ **ZCLI Enhancement v1.0.2**: Major upgrade to the ZaneyOS CLI utility with
+- 🛠️ **ZCLI Enhancement v1.0.2**: Major upgrade to the GGOS CLI utility with
   comprehensive new features
   - 🔥 **Doom Emacs Management**: Complete lifecycle management for Doom Emacs
     - 🚀 `doom install` - Automated installation using get-doom script with all
@@ -826,7 +831,7 @@
   - 🔧 Corrected `detec0.1ted_profile` to `detected_profile`
   - ✅ GPU auto-detection for hybrid systems now works properly
 
-- 📝 **Documentation**: Improved formatting in `ZaneyOS-Upgrade.md`
+- 📝 **Documentation**: Improved formatting in `GGOS-Upgrade.md`
   - 🔧 Fixed incomplete sentence about `zcli rebuild-boot` command availability
   - ✨ Improved bullet point clarity and sub-bullet indentation
   - 🎨 Fixed code block formatting in migration steps
@@ -853,7 +858,7 @@
   - 🔍 For rebuilds, updates, hostname and flake host mistches are checked
   - ⚙️ If not same, prompted to auto update the flake.nix
   - 💼 Added `$PROJECT` variable to set repo location
-  - 📝 Default is `zaneyos`
+  - 📝 Default is `GGos`
   - 📊 Added info on `zcli` utility
   - ⬆️ Updated `zcli` now uses `nh` util to select # of generations to keep
   - ➕ Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
@@ -861,7 +866,7 @@
   ```text
   ❯ zcli
 
-  ZaneyOS CLI Utility -- version 1.0
+  GGOS CLI Utility -- version 1.0
 
   Usage: zcli [command]
 
@@ -919,7 +924,7 @@
   - Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
 
 - 📜 **Install Script**:
-  - Improved `install-zaneyos.sh` script Detects GPU and better presentation
+  - Improved `install-GGos.sh` script Detects GPU and better presentation
 
 - 📝 **Evil Helix**:
   - Added `evil-helix` with language support as option
@@ -1097,7 +1102,7 @@
 ## 📖 **Documentation & Fixes**:
 
 - ❌ **Disk Module**: Disabled the `df` command in the disk module. Doesn't work
-  w/zaneyos
+  w/GGos
 - 📋 **Monitor Examples**: Added examples for monitor setup in `variables.nix`
 - 🔧 **Yazi Fix**: Merged yazi fix for errors after rebuilds. Thank you Daniel
 - 🔄 **Flake Update**: Updated flake 05/27/2025
@@ -1161,7 +1166,7 @@
 
 <br>
 <details>
-<summary><strong>**ZaneyOS v2.2**</strong> </summary>
+<summary><strong>**GGOS v2.2**</strong> </summary>
 
 <div style="margin-left: 20px;">
 
@@ -1197,7 +1202,7 @@
 
 <details>
 
-<summary><strong>**ZaneyOS v2.1**</strong></summary>
+<summary><strong>**GGOS v2.1**</strong></summary>
 
 <div style="margin-left: 20px;">
 
@@ -1217,11 +1222,11 @@ Simple bug fixes.
 
 <details>
 
-<summary><strong>**ZaneyOS v2.0** </strong></summary>
+<summary><strong>**GGOS v2.0** </strong></summary>
 
 <div style="margin-left: 20px;">
 
-With this new update of ZaneyOS it is a big rewrite of how things are being
+With this new update of GGOS it is a big rewrite of how things are being
 done. This update fixes many issues that you guys were facing. As well as makes
 things a little easier to understand. You now have a lot being stored inside the
 specific host directory, making use of modules, condensing seperate files down,

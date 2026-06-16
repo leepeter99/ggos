@@ -482,7 +482,7 @@ perform_precheck_analysis() {
                 echo "  🌐 Remote origin: $remote_url"
                 
                 # Check if it's a fork or custom repo
-                if [[ "$remote_url" != *"zaney/ggos"* ]]; then
+                if [[ "$remote_url" != *"leepeter99/ggos"* ]]; then
                     echo "  ⚠️  CUSTOM REPOSITORY DETECTED!"
                     echo "     This appears to be a fork or custom repository."
                     echo "     Consider running the comparison tool for detailed analysis:"

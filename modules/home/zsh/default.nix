@@ -59,7 +59,7 @@
       c = "clear";
       fr = "nh os switch --hostname ${profile}";
       fu = "nh os switch --hostname ${profile} --update";
-      zu = "sh <(curl -L https://gitlab.com/Zaney/ggos/-/releases/latest/download/install-ggos.sh)";
+      zu = "sh <(curl -L https://github.com/leepeter99/ggos/-/releases/latest/download/install-ggos.sh)";
       ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
       cat = "bat";
       man = "batman";

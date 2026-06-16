@@ -1,8 +1,8 @@
 [English](zcli.md) | [Español](zcli.es.md)
 
-# GGOS Command Line Utility (zcli) - Version 1.0.2
+# ZaneyOS Command Line Utility (zcli) - Version 1.0.2
 
-zcli is a handy tool for performing common maintenance tasks on your GGOS
+zcli is a handy tool for performing common maintenance tasks on your ZaneyOS
 system with a single command. Below is a detailed guide to its usage and
 commands.
 

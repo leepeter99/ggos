@@ -262,7 +262,7 @@ else
 fi
 
 print_header "Cloning GGOS Repository"
-git clone https://gitlab.com/zaney/ggos.git -b main --depth=1 ~/ggos
+git clone https://github.com/leepeter99/ggos.git -b main --depth=1 ~/ggos
 cd ~/ggos || exit 1
 
 print_header "Git Configuration"

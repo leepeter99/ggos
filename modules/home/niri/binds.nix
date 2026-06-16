@@ -36,20 +36,22 @@ in {
         // ============= APPLICATION LAUNCHERS / SHELL =============
     ${noctaliaBinds}${rofiBinds}
         Mod+Return           { spawn "${terminal}"; }
-        Mod+W                { spawn "${browser}"; }
-        Mod+Alt+K            { spawn "qs-keybinds"; }
-        Mod+Alt+Shift+K      { spawn "qs-keybinds"; }
         Mod+Ctrl+C          { spawn "qs-cheatsheets"; }
         Mod+Shift+D          { spawn "discord"; }
+        Mod+Shift+M          { spawn "spotify"; }
         Mod+Alt+W            { spawn "web-search"; }
-        Mod+Y                { spawn "kitty" "-e" "yazi"; }
-        Mod+T                { spawn "thunar"; }
         Mod+E                { spawn "emopicker9000"; }
-        Mod+O                { spawn "obs"; }
         Mod+G                { spawn "gimp"; }
-        Mod+Alt+M            { spawn "pavucontrol"; }
+        Mod+O                { spawn "obs"; }
+        Mod+T                { spawn "thunar"; }
+        Mod+W                { spawn "${browser}"; }
+        Mod+Y                { spawn "${terminal} "-e" "yazi"; }
+        Mod+Z                { spawn "zoom-us"; }
+        Mod+Alt+B            { spawn "hyprpicker" "-a"; }
         Mod+Alt+C            { spawn "hyprpicker" "-a"; }
-
+        Mod+Alt+M            { spawn "pavucontrol"; }
+        Mod+Alt+K            { spawn "qs-keybinds"; }
+        Mod+Alt+Shift+K      { spawn "qs-keybinds"; }
         // ============= SCREENSHOTS =============
         Mod+S                { screenshot; }
         Print                { screenshot; }
