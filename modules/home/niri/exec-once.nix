@@ -13,7 +13,7 @@
   isNoctalia = barChoice == "noctalia";
 
   noctaliaStartup = lib.optionalString isNoctalia ''
-    spawn-at-startup "noctalia-shell"
+    spawn-at-startup "noctalia"
   '';
   waybarStartup = lib.optionalString (!isNoctalia) ''
     spawn-at-startup "sh" "-c" "killall -q awww; sleep .5 && awww-daemon"

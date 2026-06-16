@@ -14,16 +14,17 @@
   isNoctalia = barChoice == "noctalia";
 
   noctaliaBinds = lib.optionalString isNoctalia ''
-    Mod+D                { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+Shift+Return     { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+M                { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
-    Mod+V                { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
-    Mod+Alt+P            { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
-    Mod+Ctrl+L          { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "lockscreen" "lock"; }
-    Mod+Shift+W          { spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
-    Mod+X                { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
-    Mod+C                { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
-    Mod+Ctrl+R           { spawn "noctalia-shell" "ipc" "call" "screenRecorder" "toggle"; }
+    Mod+D                { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Mod+Shift+Return     { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Mod+N                { spawn "noctalia" "msg" "panel-toggle" "control-center" "notifications"; }
+    Mod+V                { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
+    Mod+Alt+P            { spawn "noctalia" "msg" "settings-toggle"; }
+    Mod+Shift+comma      { spawn "noctalia" "msg" "settings-toggle"; }
+    Mod+Ctrl+L           { spawn "noctalia" "msg" "session" "lock"; }
+    Mod+Shift+W          { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }
+    Mod+X                { spawn "noctalia" "msg" "panel-toggle" "session"; }
+    Mod+C                { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
+    Mod+Ctrl+R           { spawn "noctalia" "msg" "screenshot-region"; }
   '';
   rofiBinds = lib.optionalString (!isNoctalia) ''
     Mod+D                { spawn "rofi-launcher"; }
@@ -36,16 +37,17 @@ in {
         // ============= APPLICATION LAUNCHERS / SHELL =============
     ${noctaliaBinds}${rofiBinds}
         Mod+Return           { spawn "${terminal}"; }
+        Mod+Shift+T          { spawn "sh" "-lc" "DropTerminal"; }
         Mod+Ctrl+C          { spawn "qs-cheatsheets"; }
         Mod+Shift+D          { spawn "discord"; }
-        Mod+Shift+M          { spawn "spotify"; }
+        Mod+M                { spawn "spotify"; }
         Mod+Alt+W            { spawn "web-search"; }
         Mod+E                { spawn "emopicker9000"; }
         Mod+G                { spawn "gimp"; }
         Mod+O                { spawn "obs"; }
         Mod+T                { spawn "thunar"; }
         Mod+W                { spawn "${browser}"; }
-        Mod+Y                { spawn "${terminal} "-e" "yazi"; }
+        Mod+Y                { spawn "${terminal}" "-e" "yazi"; }
         Mod+Z                { spawn "zoom-us"; }
         Mod+Alt+B            { spawn "hyprpicker" "-a"; }
         Mod+Alt+C            { spawn "hyprpicker" "-a"; }
