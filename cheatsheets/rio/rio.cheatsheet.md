@@ -8,7 +8,7 @@
 - Appearance
   - Font: Maple Mono NF, size 12 (overrides stylix terminal font)
   - Cursor: beam, blinking
-  - Background opacity: 1.0 (opaque)
+  - Background opacity: 0.70
   - Blur: off
   - Window decorations: Disabled (niri owns corner radius / clip + prefer-no-csd)
 
@@ -41,7 +41,8 @@ Cursor
 - cursor.blinking: true
 
 Window
-- window.opacity: 1.0
+- window.opacity: 0.70
+- window.opacity-cells: true
 - window.blur: false
 - window.decorations: Disabled
 

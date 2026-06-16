@@ -116,11 +116,12 @@
   #stylixImage = ../../wallpapers/mountainscapedark.jpg;
   #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
   #stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
-  stylixImage = ../../wallpapers/Rainnight.jpg;
+  #stylixImage = ../../wallpapers/Rainnight.jpg;
   #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
   #stylixImage = ../../wallpapers/nix-wallpaper-stripes-logo.png;
   #stylixImage = ../../wallpapers/beautifulmountainscape.jpg;
-
+  #stylixImage = ../../wallpapers/gengar.png;
+  stylixImage = ../../wallpapers/gengar_2.png;
   # Set Waybar
   #  Available Options:
   #waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
