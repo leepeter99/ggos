@@ -28,7 +28,7 @@
   ```
 
 - Fix: `kmscon` error
-  - `GGos/modules/core/stylix.nix`
+  - `ggos/modules/core/stylix.nix`
   - Added: `targets.kmscon.enable = false;`
     ```nix
     stylix = {
@@ -47,7 +47,7 @@
     - That build uses and `openssl v1.1.1w`
     - That ius OEL and marked insecure in NIXOS
     - Users can use an alternativve client until discord is updated
-- Disabled `zen browser` in `GGos/modules/home/default.nix`
+- Disabled `zen browser` in `ggos/modules/home/default.nix`
   - Needs to be migrated to being enabled via host variable
 - Changed from `zen` to `latest` kernel
   - Linux kernel v7.0 is much better than 6.19_zen
@@ -121,9 +121,9 @@
   - Adjusted `noctalia-shell` bindings to match change
 - Default applications now settable
   - Globally for all hosts
-    - `GGos/modules/home/xdg.nix`
+    - `ggos/modules/home/xdg.nix`
   - Per host
-    - `GGos/hosts/HOSTNAME/variables.nix`
+    - `ggos/hosts/HOSTNAME/variables.nix`
       - Host settings override `xdg.nix` settings
 
 #### 📅 **Updated: January 23rd, 2026**
@@ -521,7 +521,7 @@
 - Added `alejandra` formatter to `flake.nix`
   - ran `nix fmt ./` and updated all files to current format spec
 - Added `alejandra` as default formatter in `nixvim.nix`
-- Hybrid GPU detection fails in `install-GGos.sh`
+- Hybrid GPU detection fails in `install-ggos.sh`
   - Should be `nvidia-laptop` not `hybrid`
     - Thanks to sasek @sasek333 for spotting this
 
@@ -636,7 +636,7 @@
     enabled (required for RTX 50xx open kernel module)
   - New profile: `profiles/amd-hybrid/default.nix` (wires `amdgpuID`/`nvidiaID`
     from `hosts/<host>/variables.nix`)
-  - zcli detection updated to recognize `amd-hybrid`; `install-GGos.sh`
+  - zcli detection updated to recognize `amd-hybrid`; `install-ggos.sh`
     prompts include `amd-hybrid`
   - Added `amdgpuID` to `hosts/*/variables.nix`
   - Docs updated (`README`, `WARP.md`, cheatsheets)
@@ -681,7 +681,7 @@
 
 - As a result of this change, you can't just `git pull` and rebuild
 - The new variables and other changes will cause the build to fail
-- If you are on `GGos v2.3` read the upgrade documentation
+- If you are on `ggos v2.3` read the upgrade documentation
 - Began process to translate documents into Spanish (Machine translated)
 - README.es.md
 - FAQ.es.md
@@ -689,7 +689,7 @@
 - TESTING-UPGRADE.es.md
 - UPGRADE-2.3-to-2.4.es.md
 - zcli.es.md
-- Added `~/GGos/cheatsheets/project-guide.md`
+- Added `~/ggos/cheatsheets/project-guide.md`
 - This is an overview of how GGOS is laid out
 
 #### 📅 **Updated: August 21st, 2025**
@@ -733,7 +733,7 @@
   - 🚀 **Automated Upgrade Script**: `upgrade-2.3-to-2.4.sh` with complete
     migration automation
     - 💾 **Complete Backup System**: Timestamped backups with organized storage
-      in `~/.config/GGos-backups/`
+      in `~/.config/ggos-backups/`
     - 🔍 **Version Validation**: Automatic detection of GGOS 2.3 vs 2.4+ to
       prevent incorrect upgrades
     - 🧬 **Variable Migration**: Comprehensive migration of 15+ configuration
@@ -858,7 +858,7 @@
   - 🔍 For rebuilds, updates, hostname and flake host mistches are checked
   - ⚙️ If not same, prompted to auto update the flake.nix
   - 💼 Added `$PROJECT` variable to set repo location
-  - 📝 Default is `GGos`
+  - 📝 Default is `ggos`
   - 📊 Added info on `zcli` utility
   - ⬆️ Updated `zcli` now uses `nh` util to select # of generations to keep
   - ➕ Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
@@ -924,7 +924,7 @@
   - Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
 
 - 📜 **Install Script**:
-  - Improved `install-GGos.sh` script Detects GPU and better presentation
+  - Improved `install-ggos.sh` script Detects GPU and better presentation
 
 - 📝 **Evil Helix**:
   - Added `evil-helix` with language support as option
@@ -1102,7 +1102,7 @@
 ## 📖 **Documentation & Fixes**:
 
 - ❌ **Disk Module**: Disabled the `df` command in the disk module. Doesn't work
-  w/GGos
+  w/ggos
 - 📋 **Monitor Examples**: Added examples for monitor setup in `variables.nix`
 - 🔧 **Yazi Fix**: Merged yazi fix for errors after rebuilds. Thank you Daniel
 - 🔄 **Flake Update**: Updated flake 05/27/2025
