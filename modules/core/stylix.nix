@@ -9,6 +9,10 @@ in {
   stylix = {
     enable = true;
     image = stylixImage;
+    # Stylix's kmscon target sets services.kmscon.extraConfig/fonts, which the
+    # current nixpkgs removed (renamed to services.kmscon.config). We don't use
+    # kmscon, so just turn the target off to avoid the removed-option assertion.
+    targets.kmscon.enable = false;
     # base16Scheme = {
     #   base00 = "282936";
     #   base01 = "3a3c4e";

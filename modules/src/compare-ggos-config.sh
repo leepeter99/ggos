@@ -22,7 +22,7 @@ TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 REPORT_FILE="$HOME/ggos-config-comparison-$TIMESTAMP.txt"
 
 # Default comparison targets
-DEFAULT_REPO="https://gitlab.com/zaney/ggos.git"
+DEFAULT_REPO="https://github.com/leepeter99/ggos.git"
 DEFAULT_BRANCH="main"
 
 # Function to print a section header
@@ -60,7 +60,7 @@ show_usage() {
   echo ""
   echo "Options:"
   echo "  -r, --repo URL          Remote repository URL to compare against"
-  echo "                          (default: https://gitlab.com/zaney/ggos.git)"
+  echo "                          (default: https://github.com/leepeter99/ggos.git)"
   echo "  -b, --branch NAME       Branch to compare against (default: main)"
   echo "  -o, --output FILE       Output report file path"
   echo "  -h, --help              Show this help message"

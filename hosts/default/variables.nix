@@ -10,14 +10,15 @@
   displayManager = "tui";
 
   # Emable/disable bundled applications
-  tmuxEnable = false;
+  tmuxEnable = true;
   alacrittyEnable = false;
-  weztermEnable = false;
   ghosttyEnable = false;
+  rioEnable = true;
+  weztermEnable = false;
   vscodeEnable = false;
-  antigravityEnable = false; # Google port of vscodium
+  antigravityEnable = true; # Google port of vscodium
   # Note: This is evil-helix with VIM keybindings by default
-  helixEnable = false;
+  helixEnable = true;
   #To install: Enable here, zcli rebuild, then run zcli doom install
   doomEmacsEnable = false;
 
@@ -33,6 +34,15 @@
    monitor = Virtual-1,1920x1080@60,auto,1
     ";
 
+  # Niri output (monitor) layout in KDL. Leave "" to let niri auto-detect.
+  # Example:
+  #   output "DP-1" {
+  #       mode "2560x1440@59.95"
+  #       scale 1.0
+  #       position x=0 y=0
+  #   }
+  niriOutputs = "";
+
   # Bar/Shell Settings
   # Choose between noctalia or waybar
   barChoice = "noctalia";
@@ -45,7 +55,7 @@
   # This does NOT install your browser
   # You need to install it by adding it to the `packages.nix`
   # or as a flatpak
-  browser = "brave";
+  browser = "zen-beta";
 
   # Host-level default applications (picked up by Home Manager xdg.mimeApps)
   # Uncomment and adjust the .desktop IDs to set per-host defaults.
@@ -66,7 +76,7 @@
   # Kitty, ghostty, wezterm, aalacrity
   # Note: kitty, wezterm, alacritty have to be enabled in `variables.nix`
   # Setting it here does not enable it. Kitty is installed by default
-  terminal = "kitty"; # Set Default System Terminal
+  terminal = "rio"; # Set Default System Terminal
 
   keyboardLayout = "us";
   keyboardVariant = "";
@@ -98,10 +108,11 @@
   #stylixImage = ../../wallpapers/mountainscapedark.jpg;
   #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
   #stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
-  stylixImage = ../../wallpapers/Rainnight.jpg;
+  #stylixImage = ../../wallpapers/Rainnight.jpg;
   #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
   #stylixImage = ../../wallpapers/nix-wallpaper-stripes-logo.png;
   #stylixImage = ../../wallpapers/beautifulmountainscape.jpg;
+  stylixImage = ../../wallpapers/gengar.png;
 
   # Set Waybar
   #  Available Options:
@@ -124,7 +135,6 @@
   #waybarChoice = ../../modules/home/waybar/waybar-jwt-transparent.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jwt-ultradark.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-pctrade-catppuccin.nix;
-  waybarChoice = ../../modules/home/waybar/waybar-mangowc-jak-catppuccin.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-old-ddubsos.nix;
 
   # Set Animation style

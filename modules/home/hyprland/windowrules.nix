@@ -20,7 +20,7 @@ _: {
 
       windowrule {
         name = Terminals
-        match:class = ^(com.mitchellh.ghostty|org.wezfurlong.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal)$
+        match:class = ^(com.mitchellh.ghostty|org.wezfurlong.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal|Rio|rio|rioterm)$
         tag = +terminal
       }
 

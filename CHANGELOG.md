@@ -4,8 +4,40 @@
 > GGOS**
 
 ---
+ 🚀 **Current Release - GGOS v2.6.3**
 
-# 🚀 **Current Release - GGOS v2.6.1**
+- Fix  : bindings for noctalia-shell v5.0.0
+- Upd  : Flake URL for noctalia-shell
+- Added: Add niri window manager, rio terminal
+
+# 🚀 **Current Release - GGOS v2.6.2**
+
+- Fix: `nixvim` eval error regarding nixpkgs
+  - Proper fix is add this to `nixvim.nix`
+
+  ```nix
+   nixpkgs.source = inputs.nixpkgs;
+  ```
+
+- Fix: `gtk.nix` error regarding `null`
+
+  ```nix
+  {config, pkgs, lib, ...}: {
+    gtk = {
+      gtk4.theme = lib.mkForce null;
+  ```
+
+- Fix: `kmscon` error
+  - `ggos/modules/core/stylix.nix`
+  - Added: `targets.kmscon.enable = false;`
+    ```nix
+    stylix = {
+     enable = true;
+     image = stylixImage;
+     targets.kmscon.enable = false;
+    ```
+- Updated to NixOS v26.11
+- Enable `plymouth` by default
 
 - Chg: `awww` from flake input to `pkgs.awww`
   - This resolves build errors

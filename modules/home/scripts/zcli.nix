@@ -87,7 +87,7 @@ in
     # zcli - NixOS System Management CLI
     # ==================================
     #
-    #    Purpose: NixOS system management utility for GGOS distribution
+    #    Purpose: NixOS system management utility for ZaneyOS distribution
     #     Author: Don Williams (ddubs) & Zaney
     # Start Date: June 7th, 2025
     #    Version: 1.0.2
@@ -121,7 +121,7 @@ in
     # doom [sub]          - Doom Emacs management (install/status/remove/update)
     #
     # Variables:
-    # PROJECT             - Base directory name (ddubsos/ggos)
+    # PROJECT             - Base directory name (ggos)
     # PROFILE             - Hardware profile from Nix parameter
     # BACKUP_FILES        - Array of backup file paths to clean
     # FLAKE_NIX_PATH      - Path to flake.nix for host/profile updates
@@ -129,7 +129,7 @@ in
 
 
     # --- Configuration ---
-    PROJECT="ggos"   #ddubos or ggos
+    PROJECT="ggos"   
     PROFILE_DEFAULT="${profile}"
     BACKUP_FILES_STR="${backupFilesString}"
     VERSION="1.0.2"
@@ -183,7 +183,7 @@ in
     }
 
     print_help() {
-      echo "GGOS CLI Utility -- version $VERSION"
+      echo "ZaneyOS CLI Utility -- version $VERSION"
       echo ""
       echo "Usage: zcli [command] [options]"
       echo ""

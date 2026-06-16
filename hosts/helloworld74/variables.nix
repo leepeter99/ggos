@@ -35,6 +35,22 @@
     monitor=HDMI-A-1,2560x1440@59.95,0x0,1.0
     monitor=HDMI-A-1,transform,1";
 
+  # Niri output (monitor) layout in KDL. Mirrors extraMonitorSettings above.
+  # Leave as "" to let niri auto-detect. transform "90" == hyprland transform,1.
+  niriOutputs = ''
+    output "DP-1" {
+        mode "2560x1440@59.95"
+        scale 1.0
+        position x=1440 y=412
+    }
+    output "HDMI-A-1" {
+        mode "2560x1440@59.95"
+        scale 1.0
+        transform "90"
+        position x=0 y=0
+    }
+  '';
+
   # Bar/Shell Settings
   # Choose between noctalia or waybar
   barChoice = "noctalia";
@@ -98,13 +114,14 @@
   # Default background
   # Add new images to ~/ggos/wallpapers
   #stylixImage = ../../wallpapers/mountainscapedark.jpg;
-  stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
+  #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
   #stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
   #stylixImage = ../../wallpapers/Rainnight.jpg;
   #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
   #stylixImage = ../../wallpapers/nix-wallpaper-stripes-logo.png;
   #stylixImage = ../../wallpapers/beautifulmountainscape.jpg;
-
+  #stylixImage = ../../wallpapers/gengar.png;
+  stylixImage = ../../wallpapers/gengar_2.png;
   # Set Waybar
   #  Available Options:
   #waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
@@ -122,11 +139,10 @@
   #waybarChoice = ../../modules/home/waybar/waybar-jak-catppuccin.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jak-ml4w-modern.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jak-oglo-simple.nix;
-  #waybarChoice = ../../modules/home/waybar/waybar-jwt-catppuccin.nix;
+  waybarChoice = ../../modules/home/waybar/waybar-jwt-catppuccin.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jwt-transparent.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jwt-ultradark.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-pctrade-catppuccin.nix;
-  waybarChoice = ../../modules/home/waybar/waybar-mangowc-jak-catppuccin.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-old-ddubsos.nix;
 
   # Set Animation style

@@ -27,6 +27,10 @@ in {
       enable = true; # set this so desktop file is created
       withUWSM = false;
     };
+    # Niri session kept alongside Hyprland (pick at login screen).
+    # This installs niri, registers the wayland session for LY/SDDM,
+    # and wires niri-scoped portals (gnome+gtk) + gnome-keyring.
+    niri.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
@@ -111,6 +115,7 @@ in {
       upower # noctalia shell battery
       uwsm # Universal Wayland Session Manager (optional must be enabled)
       v4l-utils # Used For Things Like OBS Virtual Camera
+      waybar # waybar
       waypaper # Change wallpaper
       wget # Tool For Fetching Files With Links
       yarn # JavaScipt Package Manager
@@ -119,7 +124,7 @@ in {
       ### Development ###
       bash-language-server # Bash Language Server
       beautysh # Shell Formatter
-      devenv
+      devenv # For Creating Development Environment
       graphviz # Graph Visualization
       haskell-language-server # Haskell Language Server
       hlint # Haskell Linter

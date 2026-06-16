@@ -38,7 +38,7 @@ git -C ~/ggos fetch origin && \
 
 Alternative (curl):
 ```bash
-curl -fsSL https://gitlab.com/zaney/ggos/-/raw/main/upgrade-2.3-to-2.4.sh -o ~/upgrade-2.3-to-2.4.sh
+curl -fsSL https://github.com/leepeter99/ggos/-/raw/main/upgrade-2.3-to-2.4.sh -o ~/upgrade-2.3-to-2.4.sh
 chmod +x ~/upgrade-2.3-to-2.4.sh
 ~/upgrade-2.3-to-2.4.sh
 ```
@@ -95,7 +95,7 @@ The manual process below is **incomplete and risky** because:
 
 3. **Clone the v2.4 branch:**
    ```bash
-   git clone https://gitlab.com/zaney/ggos.git -b Stable-2.4 --depth=1
+   git clone https://github.com/leepeter99/ggos.git -b Stable-2.4 --depth=1
    cd ~/ggos
    ```
 
