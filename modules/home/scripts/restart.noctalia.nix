@@ -7,6 +7,7 @@
     pkgs.findutils
     pkgs.util-linux
     pkgs.bash
+    pkgs.systemd
   ];
   script = builtins.readFile ./restart.noctalia;
 in

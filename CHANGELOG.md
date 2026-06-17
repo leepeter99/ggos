@@ -2,8 +2,12 @@
 
 > ** ✨ A comprehensive history of changes, improvements, and updates to
 > GGOS**
-
+# 🚀 **Current Release - GGOS v2.6.4**
+- Moved noctalia to a user systemd service
+  - It would sometimes crash at startup
+  - Or after a rebuild
 ---
+
  🚀 **Current Release - GGOS v2.6.3**
 
 - Fix  : bindings for noctalia-shell v5.0.0
