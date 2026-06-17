@@ -12,10 +12,6 @@
     ;
 
   isNoctalia = barChoice == "noctalia";
-  browserCommand =
-    if browser == "zen-beta"
-    then "zen-browser-single"
-    else browser;
 
   noctaliaBinds = lib.optionalString isNoctalia ''
     Mod+D                { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
@@ -50,7 +46,7 @@ in {
         Mod+G                { spawn "gimp"; }
         Mod+O                { spawn "obs"; }
         Mod+T                { spawn "thunar"; }
-        Mod+W                { spawn "${browserCommand}"; }
+        Mod+W                { spawn "${browser}"; }
         Mod+Y                { spawn "${terminal}" "-e" "yazi"; }
         Mod+Z                { spawn "zoom-us"; }
         Mod+Alt+B            { spawn "hyprpicker" "-a"; }
