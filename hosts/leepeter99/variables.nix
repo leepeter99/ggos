@@ -38,27 +38,19 @@
 
   # Niri output (monitor) layout in KDL. Mirrors extraMonitorSettings above.
   # Leave as "" to let niri auto-detect. transform "90" == hyprland transform,1.
-  niriOutputs = [
-    {
-      name = "eDP-1";
-      mode = "2560x1440@240.0";
-      position = {
-        x = 0;
-        y = 1660;
-      };
-      scale = 1.6;
+  niriOutputs =  ''
+    output "DP-1" {
+        mode "2560x1440@240.0"
+        scale 1.6
+        position x=0 y=1660
     }
-    {
-      name = "HDMI-A-2";
-      mode = "2560x1440@59.95";
-      position = {
-        x = 1600;
-        y = 554;
-      };
-      scale = 1.0;
+    output "HDMI-A-1" {
+        mode "2560x1440@59.95"
+        scale 1.0
+        position x=1600 y=554
     }
-  ];
-
+  '';
+    
   # Bar/Shell Settings
   # Choose between noctalia or waybar
   barChoice = "noctalia";
@@ -99,9 +91,9 @@
   consoleKeyMap = "us";
 
   # For hybrid support (Intel/NVIDIA Prime or AMD/NVIDIA)
-  #intelID = "PCI:1:0:0";
+  intelID = "PCI:0:2:0";
   #amdgpuID = "PCI:5:0:0";
-  nvidiaID = "PCI:8:0:0";
+  nvidiaID = "PCI:1:0:0";
 
   # Enable NFS
   enableNFS = true;
@@ -171,5 +163,5 @@
 
   # Set network hostId if required (needed for zfs)
   # Otherwise leave as-is
-  hostId = "5ab03f50";
+  hostId = "54bffda3";
 }
