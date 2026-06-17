@@ -6,7 +6,6 @@
     codex
     libreoffice-fresh
     opencode
-    postman
     pwgen
     spotify
     zoom-us

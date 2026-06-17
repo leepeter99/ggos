@@ -129,6 +129,7 @@ in {
       haskell-language-server # Haskell Language Server
       hlint # Haskell Linter
       httpie # HTTP Client
+      incus # Incus UI agent connect to server
       postman # For API Development
       rustup # For Rust Toolchain
       tig # Terminal Git
