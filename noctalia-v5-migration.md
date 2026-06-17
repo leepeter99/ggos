@@ -1,4 +1,4 @@
-# ZaneyOS Noctalia v5 migration (manual/backport guide)
+# GGOS Noctalia v5 migration (manual/backport guide)
 This guide is for users on older ZaneyOS revisions who **cannot or do not want to pull the fixed branch** but still want to migrate from the old Noctalia shell integration to Noctalia v5.
 
 Noctalia v5 is a rewrite and uses:

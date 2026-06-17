@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ##########################################
-# ZaneyOS Noctalia v5 Migration Finalize Script
+# GGOS Noctalia v5 Migration Finalize Script
 # Merges the prepared test branch back to the original branch and
 # optionally restores any stash created during prep.
 ##########################################
@@ -90,7 +90,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-print_header "ZaneyOS Noctalia v5 Migration Finalize"
+print_header "GGOS Noctalia v5 Migration Finalize"
 
 if ! command -v git >/dev/null 2>&1; then
   print_error "git is required but not found in PATH."

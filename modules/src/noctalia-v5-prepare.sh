@@ -1,8 +1,7 @@
-
 #!/usr/bin/env bash
 
 ##########################################
-# ZaneyOS Noctalia v5 Migration Prep Script
+# GGOS Noctalia v5 Migration Prep Script
 # Safely prepares an isolated local test branch from origin/noctaliav5.
 ##########################################
 
@@ -92,7 +91,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-print_header "ZaneyOS Noctalia v5 Migration Prep"
+print_header "GGOS Noctalia v5 Migration Prep"
 
 if ! command -v git >/dev/null 2>&1; then
   print_error "git is required but not found in PATH."

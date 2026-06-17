@@ -245,7 +245,7 @@ Then:
 ![GGOS Install Script Command](img/install-script.jpg)
 
 ```
-sh <(curl -L https://gitlab.com/Zaney/ggos/-/raw/main/install-ggos.sh)
+sh <(curl -L https://github.com/leepeter99/ggos/-/raw/main/install-ggos.sh)
 ```
 
 #### The install process will look something like this:
@@ -276,7 +276,7 @@ nix-shell -p git vim
 2. Clone this repo & enter it:
 
 ```
-cd && git clone https://gitlab.com/zaney/ggos.git -b main --depth=1 ~/ggos
+cd && git clone https://github.com/leepeter99/ggos.git -b main --depth=1 ~/ggos
 cd ggos
 
 You can still run the `install.sh` script if you want to.
