@@ -19,7 +19,7 @@
   '';
 in {
   home.packages = [noctaliaPkg];
-  ystemd.user.services.noctalia = {
+  systemd.user.services.noctalia = {
     Unit = {
       Description = "Noctalia panel service";
       PartOf = ["hyprland-session.target"];

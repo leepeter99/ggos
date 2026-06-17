@@ -83,9 +83,9 @@
   consoleKeyMap = "us";
 
   # For hybrid support (Intel/NVIDIA Prime or AMD/NVIDIA)
-  intelID = "PCI:1:0:0";
+  intelID = "PCI:0:2:0";
   amdgpuID = "PCI:5:0:0";
-  nvidiaID = "PCI:0:2:0";
+  nvidiaID = "PCI:1:0:0";
 
   # Enable NFS
   enableNFS = true;

@@ -13,7 +13,7 @@
   isNoctalia = barChoice == "noctalia";
 
   noctaliaStartup = lib.optionalString isNoctalia ''
-    spawn-at-startup "noctalia"
+    spawn-at-startup "sh" "-lc" "systemctl --user restart noctalia.service || systemctl --user start noctalia.service || true"
   '';
   waybarStartup = lib.optionalString (!isNoctalia) ''
     spawn-at-startup "sh" "-c" "killall -q awww; sleep .5 && awww-daemon"
@@ -27,7 +27,10 @@ in {
     // Startup
     spawn-at-startup "sh" "-c" "wl-paste --type text --watch cliphist store"
     spawn-at-startup "sh" "-c" "wl-paste --type image --watch cliphist store"
+    spawn-at-startup "sh" "-c" "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+    spawn-at-startup "sh" "-c" "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
     spawn-at-startup "sh" "-c" "systemctl --user start hyprpolkitagent"
+    spawn-at-startup "qs" "-c" "overview"
     spawn-at-startup "fcitx5" "-d"
     ${noctaliaStartup}${waybarStartup}
   '';
