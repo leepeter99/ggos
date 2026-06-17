@@ -6,6 +6,10 @@
     browser
     terminal
     ;
+  browserCommand =
+    if browser == "zen-beta"
+    then "zen-browser-single"
+    else browser;
   # Noctalia-specific bindings (only included when barChoice == "noctalia")
   noctaliaBind =
     if barChoice == "noctalia"
@@ -58,7 +62,7 @@ in {
         "$modifier,M, Spotify, exec, spotify"
         "$modifier,O, OBS Studio, exec, obs"
         "$modifier,T, Thunar, exec, thunar"
-        "$modifier,W, Web Browser, exec, ${browser}"
+        "$modifier,W, Web Browser, exec, ${browserCommand}"
         "$modifier,Y, File Manager, exec, rio -e yazi"
         "$modifier,Z, Zoom, exec, zoom-us"
         "$modifier CTRL,I, Cursor IDE, exec, cursor"
