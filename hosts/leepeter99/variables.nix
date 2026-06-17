@@ -15,7 +15,7 @@
   ghosttyEnable = false;
   rioEnable = true;
   weztermEnable = false;
-  vscodeEnable = false;
+  vscodeEnable = true;
   antigravityEnable = true; # Google port of vscodium
   # Note: This is evil-helix with VIM keybindings by default
   helixEnable = true;
@@ -31,10 +31,9 @@
   # You can configure multiple monitors.
   # Inside the quotes, create a new line for each monitor.
   extraMonitorSettings = "
-    monitor=eDP-1,2560x1440@240.0,0x1660,1.6
-    monitor=HDMI-A-2,2560x1440@59.95,1600x554,1.0
-  ";
-
+     monitor=eDP-1,2560x1440@240.0,0x1660,1.6
+     monitor=HDMI-A-2,2560x1440@59.95,1600x554,1.0
+    ";
 
   # Niri output (monitor) layout in KDL. Mirrors extraMonitorSettings above.
   # Leave as "" to let niri auto-detect. transform "90" == hyprland transform,1.
@@ -50,13 +49,12 @@
         position x=1600 y=554
     }
   '';
-    
   # Bar/Shell Settings
   # Choose between noctalia or waybar
   barChoice = "noctalia";
 
   # Waybar Settings (used when barChoice = "waybar")
-  clock24h = true;
+  clock24h = false;
 
   # Program Options
   # Set Default Browser (google-chrome-stable for google-chrome)
@@ -92,7 +90,7 @@
 
   # For hybrid support (Intel/NVIDIA Prime or AMD/NVIDIA)
   intelID = "PCI:0:2:0";
-  #amdgpuID = "PCI:5:0:0";
+  amdgpuID = "PCI:5:0:0";
   nvidiaID = "PCI:1:0:0";
 
   # Enable NFS
@@ -121,7 +119,6 @@
   #stylixImage = ../../wallpapers/nix-wallpaper-stripes-logo.png;
   #stylixImage = ../../wallpapers/beautifulmountainscape.jpg;
   stylixImage = ../../wallpapers/gengar.png;
-  #stylixImage = ../../wallpapers/gengar_2.png;
 
   # Set Waybar
   #  Available Options:
@@ -140,7 +137,7 @@
   #waybarChoice = ../../modules/home/waybar/waybar-jak-catppuccin.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jak-ml4w-modern.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jak-oglo-simple.nix;
-  waybarChoice = ../../modules/home/waybar/waybar-jwt-catppuccin.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-jwt-catppuccin.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jwt-transparent.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jwt-ultradark.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-pctrade-catppuccin.nix;
@@ -163,5 +160,5 @@
 
   # Set network hostId if required (needed for zfs)
   # Otherwise leave as-is
-  hostId = "54bffda3";
+  hostId = "5ab03f50";
 }
