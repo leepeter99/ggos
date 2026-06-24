@@ -1,6 +1,6 @@
-{pkgs, ...}: {
-  # Google Antigravity IDE helper, exposed via antigravity-nix overlay as pkgs.google-antigravity
-  home.packages = with pkgs; [
-    google-antigravity
+{pkgs, inputs, ...}: {
+  # Google Antigravity IDE
+  home.packages = [
+    inputs.antigravity-nix.packages.${pkgs.system}.google-antigravity-ide
   ];
 }

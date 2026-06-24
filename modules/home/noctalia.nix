@@ -33,6 +33,19 @@ in {
     };
   };
 
+  systemd.user.services.waybar = {
+    Unit = {
+      Description = "Waybar (disabled by Noctalia)";
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.coreutils}/bin/true";
+    };
+    Install = {
+      WantedBy = [];
+    };
+  };
+
   # Ensure declarative v5 config directory exists
   home.activation.ensureNoctaliaConfigDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
     set -eu
