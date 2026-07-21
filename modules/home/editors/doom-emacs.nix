@@ -31,7 +31,7 @@
 
      :ui
      doom
-     doom-dashboard
+     dashboard
      doom-quit
      hl-todo
      modeline

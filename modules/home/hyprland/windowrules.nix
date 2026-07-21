@@ -207,7 +207,7 @@ _: {
 
       windowrule {
         name = IdleInhibit-fullscreen-1
-        match:class = ^(*)$
+        match:class = ^(.*)$
         idle_inhibit = fullscreen
       }
 
@@ -390,8 +390,8 @@ _: {
 
       windowrule {
         name = QS-wlogout
-        match:class = ^(org\.qt-project\.qml)$
-        match:title = ^(qs-wlogout)$
+        match:initial_class = ^(org[.]qt-project[.]qml)$
+        match:initial_title = ^(qs-wlogout)$
         border_size = 0
         center = on
         float = on
