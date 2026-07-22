@@ -721,7 +721,7 @@ in
                   echo "✗ Found empty ~/.config/emacs (not a valid Doom installation)"
                 else
                   echo "✗ ~/.config/emacs exists but Doom was not detected"
-                # fi
+                fi
               else
                 echo "✗ Doom Emacs is not installed"
               fi
