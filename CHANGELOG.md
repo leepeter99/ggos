@@ -3,6 +3,11 @@
 > ** ✨ A comprehensive history of changes, improvements, and updates to
 > GGOS**
 # 🚀 **Current Release - GGOS v2.6.4**
+- Fixed `zcli doom` detection code
+- Updated `doom eamcs` Dashboard ui error
+- Fixed eval wornings
+- Fixed `qs-wlogout` not centered and floating
+- Hardened zsh config to resolve "corrupt .zsh_history" errors
 - Moved noctalia to a user systemd service
   - It would sometimes crash at startup
   - Or after a rebuild
