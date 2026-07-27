@@ -51,7 +51,9 @@ ncg                     # nix-collect-garbage --delete-old (full GC including su
 zu                      # pull latest install script from upstream and re-run
 ```
 
-Profiles (= flake targets): `amd`, `intel`, `nvidia`, `nvidia-laptop` (Intel+NVIDIA hybrid), `amd-nvidia-hybrid`, `vm`. The active host/profile/username for this machine are hardcoded in the `let` block of `flake.nix` (currently host `helloworld74`, profile `nvidia`, username `helloworld74`).
+Profiles (= flake targets): `amd`, `intel`, `nvidia`, `nvidia-laptop` (Intel+NVIDIA hybrid), `amd-nvidia-hybrid`, `vm`. The active host/profile/username for this machine are hardcoded in the `let` block of `flake.nix`
+(host `leepeter99`, profile `nvidia-laptop`, username `leepeter99`
+ host `helloworld74`, profile `nvidia`, username `helloworld74`.)
 
 When switching to a different machine, run `zcli update-host [hostname] [profile]` (or edit the `let` block in `flake.nix` directly) before rebuilding.
 
