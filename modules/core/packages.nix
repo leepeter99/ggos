@@ -65,6 +65,7 @@ in {
       cliphist # Clipboard manager using rofi menu
       cmatrix # Matrix Movie Effect In Terminal
       cowsay # Great Fun Terminal Program
+      diskwatch
       docker-compose # Allows Controlling Docker From A Single File
       duf # Utility For Viewing Disk Usage In Terminal
       dysk # Disk space util nice formattting
@@ -90,6 +91,7 @@ in {
       mdcat # CLI markdown parser
       mpv # Incredible Video Player
       ncdu # Disk Usage Analyzer With Ncurses Interface
+      netwatch
       nixfmt # Nix Formatter
       nwg-displays # configure monitor configs via GUI
       nwg-drawer # Application launcher for wayland
@@ -106,6 +108,7 @@ in {
       ripgrep # Improved Grep
       sqlite # needed for emaacs
       socat # Needed For Screenshots
+      syswatch
       tig # Git Interactive Tool
       tree-sitter # syntax highlighting
       tuigreet # The Login Manager (Sometimes Referred To As Display Manager)

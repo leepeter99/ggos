@@ -38,8 +38,17 @@ in {
     };
     portal = {
       enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-      configPackages = [pkgs.hyprland];
+      # HM's portal module sets XDG_DESKTOP_PORTAL_DIR to its own dir, hiding
+      # the system-level portals from programs.niri.enable. Niri needs the
+      # gnome portal for ScreenCast (it speaks the Mutter screencast API) and
+      # gtk as general fallback, so they must be listed here too.
+      extraPortals = [
+        pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-gnome
+        pkgs.xdg-desktop-portal-gtk
+      ];
+      # pkgs.niri ships niri-portals.conf (per-desktop backend selection)
+      configPackages = [pkgs.hyprland pkgs.niri];
     };
   };
 }
