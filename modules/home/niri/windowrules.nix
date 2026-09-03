@@ -10,5 +10,9 @@ _: {
         match app-id=r#"(?i)rio(term)?"#
         opacity 0.90
     }
+
+    window-rule {
+        match app-id=r#"(?i)zen(-beta|-browser)?"#
+    }
   '';
 }

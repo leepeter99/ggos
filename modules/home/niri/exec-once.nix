@@ -1,6 +1,7 @@
 {
   host,
   lib,
+  pkgs,
   ...
 }: let
   vars = import ../../../hosts/${host}/variables.nix;
@@ -13,7 +14,7 @@
   isNoctalia = barChoice == "noctalia";
 
   noctaliaStartup = lib.optionalString isNoctalia ''
-    spawn-at-startup "sh" "-lc" "systemctl --user restart noctalia.service || systemctl --user start noctalia.service || true"
+    spawn-at-startup "sh" "-lc" "systemctl --user start noctalia.service || true"
   '';
   waybarStartup = lib.optionalString (!isNoctalia) ''
     spawn-at-startup "sh" "-c" "killall -q awww; sleep .5 && awww-daemon"
@@ -32,6 +33,7 @@ in {
     spawn-at-startup "sh" "-c" "systemctl --user start hyprpolkitagent"
     spawn-at-startup "qs" "-c" "overview"
     spawn-at-startup "fcitx5" "-d"
+    spawn-at-startup "sh" "-lc" "${pkgs.swayidle}/bin/swayidle -w timeout 900 '${pkgs.hyprlock}/bin/hyprlock' timeout 1200 '${pkgs.niri}/bin/niri msg action power-off-monitors' resume '${pkgs.niri}/bin/niri msg action power-on-monitors'"
     ${noctaliaStartup}${waybarStartup}
   '';
 }

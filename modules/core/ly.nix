@@ -29,5 +29,7 @@ in {
         clock_color = "#800080";
       };
     };
+
+    services.displayManager.defaultSession = "niri";
   };
 }

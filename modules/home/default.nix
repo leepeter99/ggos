@@ -1,4 +1,4 @@
-{host, ...}: let
+{host, lib, ...}: let
   vars = import ../../hosts/${host}/variables.nix;
   inherit
     (vars)
@@ -7,14 +7,13 @@
     ghosttyEnable
     rioEnable
     tmuxEnable
-    waybarChoice
     weztermEnable
     vscodeEnable
     helixEnable
     doomEmacsEnable
     antigravityEnable
     ;
-  # Select bar module based on barChoice
+  waybarChoice = vars.waybarChoice or ./waybar/waybar-jak-catppuccin-v2.nix;
   barModule =
     if barChoice == "noctalia"
     then ./noctalia.nix
@@ -44,7 +43,6 @@ in {
       ./terminals/kitty.nix
       ./cli/lazygit.nix
       ./obs-studio.nix
-      #./editors/nvf.nix
       ./editors/nixvim.nix
       ./editors/nano.nix
       ./rofi
@@ -53,7 +51,6 @@ in {
       ./scripts/gemini-cli.nix
       ./stylix.nix
       ./swappy.nix
-      ./swaync.nix
       ./tealdeer.nix
       ./virtmanager.nix
       barModule
@@ -64,6 +61,7 @@ in {
       ./zoxide.nix
       ./zsh
     ]
+    ++ lib.optional (barChoice != "noctalia") ./swaync.nix
     ++ (
       if helixEnable
       then [./editors/evil-helix.nix]

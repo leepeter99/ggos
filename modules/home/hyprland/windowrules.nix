@@ -49,6 +49,12 @@ _: {
       }
 
       windowrule {
+        name = Zen-browser
+        match:class = ^(zen|zen-beta|zen-browser)$
+        tag = +browser
+      }
+
+      windowrule {
         name = vscodium
         match:class = ^(codium|codium-url-handler|VSCodium)$
         tag = +projects

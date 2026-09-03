@@ -36,7 +36,6 @@
     (import ./qs-wallpapers-restore.nix {inherit pkgs;})
     (import ./qs-wlogout.nix {inherit pkgs;})
     (import ./qs-docs.nix {inherit pkgs;})
-    (import ./docs-parser.nix {inherit pkgs;})
     (import ./hyprland-float-all.nix {inherit pkgs;})
     (import ./hyprland-change-layout.nix {inherit pkgs;})
     (import ./launch-nwg-menu.nix {inherit pkgs;})
@@ -57,7 +56,7 @@
     exec = "DropTerminal";
     terminal = false;
     type = "Application";
-    icon = "kitty";
+    icon = "utilities-terminal";
     settings.StartupWMClass = "dropterminal";
     categories = ["System" "Utility" "TerminalEmulator"];
   };

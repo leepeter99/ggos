@@ -9,7 +9,6 @@
   hyprlangVer = "0.0.3"; # fireblast.hyprlang-vscode
   hyprlsVer = "0.1.2"; # ewen-lbh.vscode-hyprls
   neroHyprlandVer = "0.0.2"; # amarcos1337.nero-hyprland
-  codeRunnerVer = "0.12.4"; # formulahendry.code-runner
 
   # Helper: prefer Open VSX (pkgs.vscode-extensions). If missing and a version is
   # provided, fetch from the VSCode Marketplace using extensionsFromVscodeMarketplace.
@@ -57,8 +56,6 @@
   codeRunnerExts = extOrMarketplace {
     publisher = "formulahendry";
     name = "code-runner";
-    version = codeRunnerVer;
-    sha256 = pkgs.lib.fakeSha256;
   };
 in {
   programs.vscode = {
@@ -89,6 +86,4 @@ in {
       };
     };
   };
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
 }

@@ -128,6 +128,7 @@
   #waybarChoice = ../../modules/home/waybar/waybar-tony.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-ddubsos-v1.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-mecha.nix;
+  waybarChoice = ../../modules/home/waybar/waybar-jak-catppuccin-v2.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jak-catppuccin.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jak-ml4w-modern.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jak-oglo-simple.nix;
@@ -154,5 +155,5 @@
 
   # Set network hostId if required (needed for zfs)
   # Otherwise leave as-is
-  hostId = "5ab03f50";
+  hostId = "a1b2c3d4";
 }

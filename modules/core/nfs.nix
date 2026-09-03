@@ -1,8 +1,6 @@
-{host, ...}: let
+{host, lib, ...}: let
   inherit (import ../../hosts/${host}/variables.nix) enableNFS;
 in {
-  services = {
-    rpcbind.enable = enableNFS;
-    nfs.server.enable = enableNFS;
-  };
+  boot.supportedFilesystems = lib.mkIf enableNFS ["nfs"];
+  services.rpcbind.enable = enableNFS;
 }

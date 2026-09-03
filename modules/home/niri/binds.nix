@@ -37,9 +37,8 @@ in {
         // ============= APPLICATION LAUNCHERS / SHELL =============
     ${noctaliaBinds}${rofiBinds}
         Mod+Return           { spawn "${terminal}"; }
-        Mod+Shift+T          { spawn "sh" "-lc" "DropTerminal"; }
+        Mod+Shift+T          { spawn "${terminal}"; }
         Mod+Ctrl+C          { spawn "qs-cheatsheets"; }
-        Mod+Shift+D          { spawn "discord"; }
         Mod+M                { spawn "spotify"; }
         Mod+Alt+W            { spawn "web-search"; }
         Mod+E                { spawn "emopicker9000"; }

@@ -59,11 +59,9 @@ in {
         "$modifier,O, OBS Studio, exec, obs"
         "$modifier,T, Thunar, exec, thunar"
         "$modifier,W, Web Browser, exec, ${browser}"
-        "$modifier,Y, File Manager, exec, rio -e yazi"
+        "$modifier,Y, File Manager, exec, ${terminal} -e yazi"
         "$modifier,Z, Zoom, exec, zoom-us"
         "$modifier CTRL,I, Cursor IDE, exec, cursor"
-        "$modifier SHIFT,D, Discord, exec, discord"
-        "$modifier CTRL,W, Windsurf IDE, exec, windsurf"
         # ============= WINDOW UTILITY =============
         "$modifier,E, Emoji Picker, exec, emopicker9000"
         "$modifier,K, Keybinds Search Tool, exec, qs-keybinds"

@@ -22,8 +22,8 @@ in {
   systemd.user.services.noctalia = {
     Unit = {
       Description = "Noctalia panel service";
-      PartOf = ["hyprland-session.target"];
-      After = ["hyprland-session.target"];
+      PartOf = ["graphical-session.target"];
+      After = ["graphical-session.target"];
     };
     Service = {
       Type = "simple";
@@ -31,6 +31,7 @@ in {
       Restart = "on-failure";
       RestartSec = "1";
     };
+    Install.WantedBy = ["graphical-session.target"];
   };
 
   systemd.user.services.waybar = {

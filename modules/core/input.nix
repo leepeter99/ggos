@@ -15,13 +15,11 @@
     };
   };
 
-  # Environment variables to ensure fcitx5 works correctly with Wayland/Hyprland
+  # Wayland frontend: do not set GTK_IM_MODULE / QT_IM_MODULE (they fight native IM).
   environment.variables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
     XMODIFIERS = "@im=fcitx";
     SDL_IM_MODULE = "fcitx";
-    GLFW_IM_MODULE = "ibus"; # Helps with some apps that use GLFW
+    GLFW_IM_MODULE = "ibus";
   };
 
   # Add related packages

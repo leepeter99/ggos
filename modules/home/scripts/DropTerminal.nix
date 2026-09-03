@@ -6,7 +6,7 @@ pkgs.writeShellScriptBin "DropTerminal" ''
   # Usage:
   #   DropTerminal [-d] [<terminal_command>]
   # Behavior:
-  #   - If <terminal_command> is omitted, uses $TERM, with fallback to kitty when $TERM is unset/empty
+  #   - If <terminal_command> is omitted, uses $TERMINAL / $XDG_TERMINAL_EMULATOR, then rio
 
   set -euo pipefail
 
@@ -47,10 +47,10 @@ pkgs.writeShellScriptBin "DropTerminal" ''
     SPAWN_ONLY=true
   fi
 
-  # Terminal command: prefer explicit arg; otherwise always use kitty
+  # Prefer explicit arg, then $TERMINAL / $XDG_TERMINAL_EMULATOR, then rio
   TERMINAL_CMD="''${1-}"
   if [ -z "''${TERMINAL_CMD}" ]; then
-    TERMINAL_CMD="kitty"
+    TERMINAL_CMD="''${TERMINAL:-''${XDG_TERMINAL_EMULATOR:-rio}}"
   fi
 
   # Debug echo function
@@ -312,7 +312,20 @@ pkgs.writeShellScriptBin "DropTerminal" ''
     # Create a unique title so we can robustly identify the new window
     local token=$(date +%s%N)
     local title="dropterm-$token"
-    local spawn_cmd="$TERMINAL_CMD --class dropterminal --instance-group dropterminal --title $title"
+    local bin
+    bin=$(basename "''${TERMINAL_CMD%% *}")
+    local spawn_cmd
+    case "$bin" in
+      rio)
+        spawn_cmd="$TERMINAL_CMD --app-id dropterminal --title-placeholder $title"
+        ;;
+      kitty)
+        spawn_cmd="$TERMINAL_CMD --class dropterminal --instance-group dropterminal --title $title"
+        ;;
+      *)
+        spawn_cmd="$TERMINAL_CMD"
+        ;;
+    esac
 
     # Launch in scratchpad to avoid visible spawn; size will be enforced after detection
     hyprctl dispatch exec "[float; workspace $SPECIAL_WS silent] $spawn_cmd" >/dev/null 2>&1 || true
@@ -321,7 +334,7 @@ pkgs.writeShellScriptBin "DropTerminal" ''
     local new_addr=""
     for i in $(seq 1 60); do
       new_addr=$(hyprjson clients | ${pkgs.jq}/bin/jq -r --arg CLS "dropterminal" --arg TITLE "$title" \
-        '.[] | select(.class == $CLS and .title == $TITLE) | .address' | head -1)
+        '.[] | select((.class | ascii_downcase) == $CLS or .title == $TITLE or (.initialTitle // "") == $TITLE) | .address' | head -1)
       if [ -n "$new_addr" ]; then break; fi
       sleep 0.05
     done

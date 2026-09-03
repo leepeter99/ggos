@@ -12,7 +12,7 @@ in {
   imports = [inputs.home-manager.nixosModules.home-manager];
   home-manager = {
     useUserPackages = true;
-    useGlobalPkgs = false;
+    useGlobalPkgs = true;
     backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs username host profile pkgs;};
     users.${username} = {
@@ -36,7 +36,6 @@ in {
       "networkmanager"
       "scanner"
       "wheel" #sudo access
-      "vboxusers" #Virtual Box
     ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;

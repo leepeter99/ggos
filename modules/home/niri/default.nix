@@ -33,6 +33,7 @@ in {
   config = {
     home.packages = with pkgs; [
       xwayland-satellite # X11 app support under niri
+      swayidle
     ];
 
     xdg.configFile."niri/config.kdl".text = configKdl;

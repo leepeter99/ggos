@@ -4,7 +4,7 @@ pkgs.writeShellScriptBin "docs-parser" ''
     set -euo pipefail
 
     # Default paths
-    DOCS_DIR="$HOME/ddubsos/docs"
+    DOCS_DIR="$HOME/ggos/cheatsheets"
 
     # Handle arguments
     MODE="''${1:-files}"

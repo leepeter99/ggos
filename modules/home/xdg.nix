@@ -1,4 +1,4 @@
-{pkgs, host, lib, ...}: let
+{pkgs, host, ...}: let
   vars = import ../../hosts/${host}/variables.nix;
 in {
   xdg = {
@@ -6,9 +6,13 @@ in {
     mime.enable = true;
     mimeApps = {
       enable = true;
-      # If the host defines mimeDefaultApps in hosts/${host}/variables.nix,
-      # use it to set per-host default applications.
-      defaultApplications = lib.mkIf (vars ? mimeDefaultApps) vars.mimeDefaultApps;
+      defaultApplications =
+        {
+          "x-scheme-handler/http" = ["${vars.browser}.desktop"];
+          "x-scheme-handler/https" = ["${vars.browser}.desktop"];
+          "text/html" = ["${vars.browser}.desktop"];
+        }
+        // (vars.mimeDefaultApps or {});
 
       # Example: set default handlers for MIME types and URL schemes.
       # Uncomment the block below and adjust .desktop IDs to your preferred apps.

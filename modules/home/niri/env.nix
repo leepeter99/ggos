@@ -12,7 +12,7 @@ in {
         CLUTTER_BACKEND "wayland"
         MOZ_ENABLE_WAYLAND "1"
         ELECTRON_OZONE_PLATFORM_HINT "wayland"
-        SDL_VIDEODRIVER "x11"
+        SDL_VIDEODRIVER "wayland"
         GDK_SCALE "1"
         QT_SCALE_FACTOR "1"
         EDITOR "nvim"

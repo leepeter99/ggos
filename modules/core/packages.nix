@@ -18,16 +18,13 @@
     else [];
 in {
   programs = {
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
+    neovim.enable = false;
     firefox.enable = false; # Firefox is not installed by default
     hyprland = {
       enable = true; # set this so desktop file is created
       withUWSM = false;
     };
-    # Niri session kept alongside Hyprland (pick at login screen).
+    # Niri is the default session (ly/sddm); Hyprland remains available at login.
     # This installs niri, registers the wayland session for LY/SDDM,
     # and wires niri-scoped portals (gnome+gtk) + gnome-keyring.
     niri.enable = true;
@@ -47,7 +44,6 @@ in {
   };
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = ["openssl-1.1.1w"];
 
   environment.systemPackages = with pkgs;
     [
@@ -77,7 +73,6 @@ in {
       icu # dep for gearlever
       gimp # Great Photo Editor
       gnumake # Needed for emacs
-      gpu-screen-recorder # needed for nnoctalia-shell
       power-profiles-daemon # needed for noctalia-shell power cycle
       mesa-demos # needed for inxi diag util
       htop # Simple Terminal Based System Monitor
@@ -109,9 +104,6 @@ in {
       sqlite # needed for emaacs
       socat # Needed For Screenshots
       syswatch
-      tig # Git Interactive Tool
-      tree-sitter # syntax highlighting
-      tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
       unrar # Tool For Handling .rar Files
       unzip # Tool For Handling .zip Files
       usbutils # Good Tools For USB Devices
@@ -121,7 +113,6 @@ in {
       waybar # waybar
       waypaper # Change wallpaper
       wget # Tool For Fetching Files With Links
-      yarn # JavaScipt Package Manager
       ytmdl # Tool For Downloading Audio From YouTube
 
       ### Development ###
@@ -139,7 +130,6 @@ in {
       tig # Terminal Git
       tree-sitter # For Syntax Highlighting
       ## Language Server ##
-      bash-language-server # For Bash Language Server
       dockerfile-language-server # For Dockerfile Language Server
       typescript-language-server # For TypeScript Language Server
       ## Node.js ##

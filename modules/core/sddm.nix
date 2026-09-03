@@ -63,6 +63,7 @@
   };
 in {
   services.displayManager = {
+    defaultSession = "niri";
     sddm = {
       package = pkgs.kdePackages.sddm;
       extraPackages = [sddm-astronaut];

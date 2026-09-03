@@ -37,13 +37,13 @@
 
   # Niri output (monitor) layout in KDL. Mirrors extraMonitorSettings above.
   # Leave as "" to let niri auto-detect. transform "90" == hyprland transform,1.
-  niriOutputs =  ''
-    output "DP-1" {
+  niriOutputs = ''
+    output "eDP-1" {
         mode "2560x1440@240.0"
         scale 1.6
         position x=0 y=1660
     }
-    output "HDMI-A-1" {
+    output "HDMI-A-2" {
         mode "2560x1440@59.95"
         scale 1.0
         position x=1600 y=554
@@ -135,7 +135,7 @@
   #waybarChoice = ../../modules/home/waybar/waybar-ddubsos-v1.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-mecha.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jak-catppuccin.nix;
-  #waybarChoice = ../../modules/home/waybar/waybar-jak-catppuccin-v2.nix;
+  waybarChoice = ../../modules/home/waybar/waybar-jak-catppuccin-v2.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jak-ml4w-modern.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jak-oglo-simple.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jwt-catppuccin.nix;

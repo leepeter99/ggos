@@ -113,7 +113,7 @@ in
     # verify_hostname()     - Validates current hostname against flake.nix host variable
     #                        Exits with error if mismatch or missing host directory
     # detect_gpu_profile()  - Parses lspci output to identify GPU hardware
-    #                        Returns: nvidia/nvidia-laptop/amd-hybrid/amd/intel/vm/empty
+    #                        Returns: nvidia/nvidia-laptop/amd-nvidia-hybrid/amd/intel/vm/empty
     # handle_backups()      - Removes files listed in BACKUP_FILES array from $HOME
     # parse_nh_args()      - Parses command-line arguments for nh operations
     # print_help()         - Outputs command usage and available operations
@@ -281,7 +281,7 @@ in
           elif $has_nvidia && $has_intel; then
             detected_profile="nvidia-laptop"
           elif $has_nvidia && $has_amd; then
-            detected_profile="amd-hybrid"
+            detected_profile="amd-nvidia-hybrid"
           elif $has_nvidia; then
             detected_profile="nvidia"
           elif $has_amd; then
@@ -525,6 +525,13 @@ in
         fi
 
         echo "Flake.nix updated successfully!"
+
+        # Match this repo's host==username convention
+        if ${pkgs.gnused}/bin/sed -i "s/^[[:space:]]*username[[:space:]]*=[[:space:]]*\".*\"/    username = \"$target_hostname\"/" "$FLAKE_NIX_PATH"; then
+          echo "Successfully updated username to: $target_hostname"
+        else
+          echo "Warning: Failed to update username in $FLAKE_NIX_PATH" >&2
+        fi
         ;;
       add-host)
         hostname=""
@@ -550,7 +557,7 @@ in
         ${pkgs.coreutils}/bin/cp -r "$HOME/$PROJECT/hosts/default" "$HOME/$PROJECT/hosts/$hostname"
 
         detected_profile=""
-        if [[ -n "$profile_arg" && "$profile_arg" =~ ^(intel|amd|nvidia|nvidia-laptop|amd-hybrid|vm)$ ]]; then
+        if [[ -n "$profile_arg" && "$profile_arg" =~ ^(intel|amd|nvidia|nvidia-laptop|amd-nvidia-hybrid|vm)$ ]]; then
           detected_profile="$profile_arg"
         else
           echo "Detecting GPU profile..."
@@ -559,17 +566,20 @@ in
           read -p "Is this correct? (y/n) " -n 1 -r
           echo
           if [[ $REPLY =~ ^[Nn]$ ]]; then
-            read -p "Enter the correct profile (intel, amd, nvidia, nvidia-laptop, amd-hybrid, vm): " new_profile
-            while [[ ! "$new_profile" =~ ^(intel|amd|nvidia|nvidia-laptop|amd-hybrid|vm)$ ]]; do
-              echo "Invalid profile. Please enter one of the following: intel, amd, nvidia, nvidia-laptop, amd-hybrid, vm"
+            read -p "Enter the correct profile (intel, amd, nvidia, nvidia-laptop, amd-nvidia-hybrid, vm): " new_profile
+            while [[ ! "$new_profile" =~ ^(intel|amd|nvidia|nvidia-laptop|amd-nvidia-hybrid|vm)$ ]]; do
+              echo "Invalid profile. Please enter one of the following: intel, amd, nvidia, nvidia-laptop, amd-nvidia-hybrid, vm"
               read -p "Enter the correct profile: " new_profile
             done
             detected_profile=$new_profile
           fi
         fi
 
-        echo "Setting profile to '$detected_profile'..."
-        ${pkgs.gnused}/bin/sed -i "s/profile = .*/profile = \"$detected_profile\";/" "$HOME/$PROJECT/hosts/$hostname/default.nix"
+        echo "Host '$hostname' added with profile '$detected_profile'."
+        echo "Set flake.nix host/profile/username before rebuilding, or run: zcli update-host $hostname $detected_profile"
+
+        hostid=$(${pkgs.openssl}/bin/openssl rand -hex 4)
+        ${pkgs.gnused}/bin/sed -i "s/hostId = \".*\"/hostId = \"$hostid\"/" "$HOME/$PROJECT/hosts/$hostname/variables.nix"
 
         read -p "Generate new hardware.nix? (y/n) " -n 1 -r
         echo

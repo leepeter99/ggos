@@ -1,4 +1,9 @@
-{host, ...}: let
+{
+  host,
+  username,
+  lib,
+  ...
+}: let
   vars = import ../../hosts/${host}/variables.nix;
   consoleKeyMap = vars.consoleKeyMap or "us";
 in {
@@ -26,7 +31,7 @@ in {
       ];
 
       # Add trusted-users setting
-      trusted-users = ["root" "helloworld74"];
+      trusted-users = lib.mkAfter [username];
 
       # for direnv GC roots
       keep-derivations = true;
@@ -48,7 +53,7 @@ in {
   };
   environment.variables = {
     NIXOS_OZONE_WL = "1";
-    GGOS_VERSION = "2.6.5";
+    GGOS_VERSION = "2.6.6";
     GGOS = "true";
   };
   console.keyMap = "${consoleKeyMap}";
