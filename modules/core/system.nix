@@ -48,7 +48,7 @@ in {
   };
   environment.variables = {
     NIXOS_OZONE_WL = "1";
-    GGOS_VERSION = "2.6.4";
+    GGOS_VERSION = "2.6.5";
     GGOS = "true";
   };
   console.keyMap = "${consoleKeyMap}";

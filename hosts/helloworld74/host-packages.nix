@@ -11,6 +11,7 @@
     opencode
     postman
     pwgen
+    slack
     spotify
     zoom-us
   ];

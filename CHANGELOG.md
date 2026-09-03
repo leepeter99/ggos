@@ -2,9 +2,33 @@
 
 > ** ✨ A comprehensive history of changes, improvements, and updates to
 > GGOS**
+# 🚀 **Current Release - GGOS v2.6.5**
+- Fixed:
+- `pkexec` failed b/c polkit not enabled
+- `zcli doom sync and upgrade` fixed
+- `doom-dashboard` changed to `dashboard`
+  - Resolves `ui` error on `zcli doom upgrade`
+  - `doom doctor` error
+  ```txt
+    > :tools lsp
+      ! Couldn't find npm. `lsp-mode' needs npm to auto-install some LSP servers. For more information, see https://emacs-lsp.github.io/lsp-mode/page/languages/.
+  ``
+- Added:
+  - Overlay for dwarfs build error
+- Removed:
+  - overlays for glaze and tumbler
+    - `overlay.nix` is now empty template
+    - Reduces rebuild time and better `cacheix` hits
+- Updated:
+  - Updated yazi to current cfg
+  - Set default login mgr to `ly`
+  - Hyprland config moved to LUA
+
 # 🚀 **Current Release - GGOS v2.6.4**
 - Fixed `zcli doom` detection code
 - Updated `doom eamcs` Dashboard ui error
+- Moved Noctalia to systemd service
+    - Fixes startup issues
 - Fixed eval wornings
 - Fixed `qs-wlogout` not centered and floating
 - Hardened zsh config to resolve "corrupt .zsh_history" errors

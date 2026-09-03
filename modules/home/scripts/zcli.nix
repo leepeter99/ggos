@@ -34,7 +34,7 @@
 
     is_doom_installed() {
       local dir="$1"
-      [[ -x "$dir/bin/doom" ]] && [[ -f "$dir/core/doom.el"|| -f "$dir/lisp/doom.el" ]]
+      [[ -x "$dir/bin/doom" ]] && [[ -f "$dir/core/doom.el" || -f "$dir/lisp/doom.el" ]]
     }
 
     emacsdir_is_empty() {
@@ -52,7 +52,7 @@
       done
       return 1
     }
-    
+
     # --- Main Script ---
     print_banner
     if existing_dir="$(find_existing_doom_dir)"; then
@@ -61,7 +61,7 @@
     fi
 
     EMACSDIR="$HOME/.emacs.d"
-    
+
     if [[ -d "$EMACSDIR" ]]; then
       if emacsdir_is_empty "$EMACSDIR"; then
         print_status "Found empty $EMACSDIR; proceeding to install Doom Emacs into it..."
@@ -194,7 +194,7 @@ in
     }
 
     print_help() {
-      echo "ZaneyOS CLI Utility -- version $VERSION"
+      echo "GGOS CLI Utility -- version $VERSION"
       echo ""
       echo "Usage: zcli [command] [options]"
       echo ""
@@ -709,14 +709,14 @@ in
               fi
               echo "Version information:"
               "$doom_bin" version 2>/dev/null || echo "Could not get version information"
-             else
+            else
               if [ -d "$HOME/.emacs.d" ]; then
                 if [ -z "$(ls -A "$HOME/.emacs.d" 2>/dev/null)" ]; then
                   echo "✗ Found empty ~/.emacs.d (not a valid Doom installation)"
                 else
                   echo "✗ ~/.emacs.d exists but Doom was not detected"
                 fi
-                elif [ -d "$HOME/.config/emacs" ]; then
+              elif [ -d "$HOME/.config/emacs" ]; then
                 if [ -z "$(ls -A "$HOME/.config/emacs" 2>/dev/null)" ]; then
                   echo "✗ Found empty ~/.config/emacs (not a valid Doom installation)"
                 else

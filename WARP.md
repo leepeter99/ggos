@@ -4,80 +4,80 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 Project: GGOS — NixOS flake for desktop systems with per-host overrides, GPU/VM profiles, and an integrated Home Manager layer.
 
-Important repo expectations
-|- This repo is expected at: ~/ggos (programs.nh.flake points here). If you keep it elsewhere, update modules/core/nh.nix accordingly.
-|- Target OS: NixOS 23.11+; UEFI + GPT expected; systemd-boot is supported out of the box (see README for details).
+## Important repo expectations
+- This repo is expected at: `~/ggos` (`programs.nh.flake` points here). If you keep it elsewhere, update `modules/core/nh.nix` accordingly.
+- Target OS: NixOS 23.11+ / Unstable; UEFI + GPT expected; systemd-boot / GRUB supported out of the box.
 
-Common commands
-|- Rebuild and switch (preferred via nh/zcli)
-  - fr            # zsh alias → nh os switch --hostname <profile>
-  - fu            # zsh alias → nh os switch --hostname <profile> --update
-  - zcli rebuild [--dry|--ask|--cores N|--verbose|--no-nom]
-  - zcli update  [--dry|--ask|--cores N|--verbose|--no-nom]
-|- Rebuild for next boot (safer for bigger changes)
-  - zcli rebuild-boot [same options]
-  - sudo nixos-rebuild boot --flake .#<profile>
-|- Direct NixOS (without nh/zcli)
-  - sudo nixos-rebuild switch --flake .#<profile>
-|- Validate the flake
-  - nix flake check
-|- Format Nix files (nixfmt-rfc-style is included)
-  - find . -name "*.nix" -print0 | xargs -0 nixfmt
-|- Configuration comparison (compare against upstream)
-  - ./modules/src/compare-ggos-config.sh       # compares against official repo
-  - ./modules/src/compare-ggos-config.sh --branch stable-2.4    # specific branch
-|- Host management (zcli)
-  - zcli update-host [hostname] [profile]  # auto-detect if args omitted
-  - zcli add-host <hostname> [profile]     # copies hosts/default, can gen hardware.nix
-  - zcli del-host <hostname>
-|- Diagnostics and maintenance
-  - zcli diag           # writes ~/diag.txt
-  - zcli cleanup        # prunes generations (interactive)
-  - zcli trim           # runs fstrim with confirmation
-|- 2.3 → 2.4 upgrade (existing installs)
-  - ./upgrade-2.3-to-2.4.sh        # automated analysis, backup, and upgrade
-  - ./upgrade-2.3-to-2.4.sh --revert
+## Branch Overview & Current Status
 
-Notes on profiles and hosts
-|- Profiles represent hardware targets: amd, intel, nvidia, nvidia-laptop (intel+NVIDIA hybrid), amd-hybrid (AMD+NVIDIA hybrid), vm.
-|- Use the profile in flake targets like .#vm or .#nvidia, or via nh's --hostname.
-|- Host-specific settings live under hosts/<hostname>/; variables.nix holds UX and feature toggles: barChoice (noctalia or waybar), waybarChoice (when barChoice="waybar"), clock24h, etc.
+### `lua` Branch (Current Active Desktop Branch)
+- **Architecture**: Profile-centric flake configurations (`mkNixosConfig gpuProfile`).
+  - Hardware profiles: `.#amd`, `.#intel`, `.#nvidia`, `.#nvidia-laptop`, `.#amd-nvidia-hybrid`, `.#vm`.
+  - Top-level `host` and `profile` variables in `flake.nix` are injected via `specialArgs`.
+  - Each profile in `profiles/<profile>/default.nix` imports `../../hosts/${host}`, `../../modules/drivers`, and `../../modules/core`.
+- **Yazi Configuration**:
+  - Pure TOML & Lua file structure managed via `xdg.configFile` in `modules/home/yazi/default.nix`.
+  - Config files: `yazi.toml`, `keymap.toml`, `theme.toml`, `init.lua`, `package.toml`.
+  - Flavors: `catppuccin-macchiato.yazi`.
+  - Plugins: `compress.yazi`, `full-border.yazi`, `git.yazi`, `smart-filter.yazi`, `yatline.yazi`, `yatline-githead.yazi`.
+- **Polkit & Security Fixes**:
+  - `modules/core/security.nix`: `security.polkit.enablePkexecWrapper = true;` enables the official NixOS setuid root wrapper (`/run/wrappers/bin/pkexec`).
+  - `modules/core/user.nix`: `programs.zsh.enable = true;` registered at system level to add `zsh` into `/etc/shells`, preventing PAM `pkexec` authentication failures.
+  - `modules/home/stylix.nix`: `stylix.targets.yazi.enable = false;` to prevent Stylix theme generation collisions with custom `theme.toml`.
+- **Core Overlays**:
+  - `modules/core/overlays.nix`: Includes `dwarfs` 0.14.0 hotfix for GCC `<cstring>` (`#include <cstring>` in `folly/folly/lang/Exception.h`) with `fmt_11` and `-DENABLE_WERROR=OFF` needed by `gearlever`.
 
-High-level architecture (big picture)
-|- flake.nix
-  - Inputs: nixpkgs 25.11, home-manager 25.11, stylix, nvf, nix-flatpak, noctalia; nixvim and quickshell are included but currently inactive (uncommitted to outputs).
-  - Defines system, host, profile, username; constructs nixosConfigurations via mkNixosConfig.
-  - Each configuration imports profiles/<profile>.
-- profiles/<profile>/default.nix
-  - Imports host and stacks: ../../hosts/${host}, ../../modules/drivers, ../../modules/core.
-  - Toggles drivers and VM guest services per profile; the nvidia-laptop and amd-hybrid profiles consume Bus IDs from host variables.
-- hosts/<hostname>/
-  - default.nix imports hardware.nix and host-packages.nix.
-  - variables.nix is the primary control surface (display manager, terminal/browser defaults, waybarChoice, stylix image, 24h clock, Thunar/printing/NFS flags, intel/nvidia Bus IDs, etc.).
-|- modules/core
-  - Composes NixOS modules: boot, flatpak, fonts, hardware, network, nfs, nh, quickshell, packages, printing, display manager (greetd/sddm), security, services (PipeWire/SSH/Bluetooth/fstrim; smartd conditional), steam, stylix, syncthing, system (nix settings, locales, env), thunar, user (Home Manager), virtualization, xserver.
-  - quickshell.nix installs quickshell with Qt6 dependencies and required environment variables (needed for noctalia-shell).
-  - nh.nix enables nh and pins programs.nh.flake to ~/ggos.
-  - user.nix integrates Home Manager and creates users.${username}, passing { inputs, username, host, profile } to the home layer.
-- modules/drivers
-  - AMD, Intel, NVIDIA, NVIDIA Prime, NVIDIA AMD-Hybrid, and VM guest services; nvidia-prime options (enable, intelBusID, nvidiaBusID) are consumed by the nvidia-laptop profile; nvidia-amd-hybrid options (enable, amdgpuBusID, nvidiaBusID) are consumed by the amd-hybrid profile.
-|- modules/home
-  - Composes the user environment: Hyprland, bar/shell choice (noctalia-shell or Waybar via barChoice), Rofi, Yazi, terminals (Kitty/WezTerm/Ghostty/Alacritty toggles), Zsh/Bash config, Git, NVF/Neovim, OBS, swaync, scripts, Stylix, optional Doom Emacs/VSCodium/Helix.
-  - default.nix conditionally imports barModule: either noctalia.nix (when barChoice="noctalia") or waybarChoice (when barChoice="waybar").
-  - noctalia.nix installs noctalia-shell and seeds ~/.config/quickshell/noctalia-shell from the package distribution.
-  - scripts/default.nix installs zcli; zcli wraps rebuild/update/boot, cleanup, diagnostics, host management, and Doom lifecycle.
-- Shell aliases (zsh)
-  - fr and fu are defined in modules/home/zsh/default.nix, parameterized by the active profile.
+### `zos-next` Branch (Next-Gen Architecture Branch)
+- **Architecture**: Host-centric modular configuration structure.
+  - Targets hosts directly (`mkNixosConfig host`) via `hosts = [ "ggos-next" "default" "ggos-24-vm" "ggos-oem" ]`.
+  - Flake outputs generate `nixosConfigurations.<host>` using `builtins.listToAttrs`.
+  - Stacks `./modules/core/overlays.nix`, `./modules/core`, `./modules/drivers`, `./hosts/${host}`, and `./profiles`.
+- **Parity with `lua`**:
+  - Yazi configuration updated to the modular `xdg.configFile` TOML/Lua/plugins structure (matching `lua` and `ddubsos`).
+  - Dwarfs / Gearlever overlay incorporated in `modules/core/overlays.nix`.
+  - Polkit `enablePkexecWrapper = true` and system-level `programs.zsh.enable = true` applied.
+  - Stylix Yazi target disabled (`stylix.targets.yazi.enable = false`).
 
-Key development choices
-- Repo location matters: nh and zcli assume ~/ggos; move it and adjust modules/core/nh.nix.
-- Validation is via nix flake check; there is no separate unit test suite.
-- Formatting is via nixfmt-rfc-style (provided in system packages).
+## Common commands
+- **Rebuild and switch (preferred via nh/zcli)**:
+  - `fr`            # zsh alias → `nh os switch --hostname <profile>`
+  - `fu`            # zsh alias → `nh os switch --hostname <profile> --update`
+  - `zcli rebuild [--dry|--ask|--cores N|--verbose|--no-nom]`
+  - `zcli update  [--dry|--ask|--cores N|--verbose|--no-nom]`
+- **Rebuild for next boot (safer for bigger changes)**:
+  - `zcli rebuild-boot [same options]`
+  - `sudo nixos-rebuild boot --flake .#<profile>`
+- **Direct NixOS (without nh/zcli)**:
+  - `sudo nixos-rebuild switch --flake .#<profile>`
+- **Validate the flake**:
+  - `nix flake check`
+- **Host management (`zcli`)**:
+  - `zcli update-host [hostname] [profile]`  # auto-detect if args omitted
+  - `zcli add-host <hostname> [profile]`     # copies hosts/default, can gen hardware.nix
+  - `zcli del-host <hostname>`
+- **Diagnostics and maintenance**:
+  - `zcli diag`           # writes `~/diag.txt`
+  - `zcli cleanup`        # prunes generations (interactive)
+  - `zcli trim`           # runs fstrim with confirmation
 
-Useful docs in-repo
-- README.md: requirements, install and upgrade overview (including the 2.3→2.4 process).
-- zcli.md: full CLI docs, commands, options, and examples.
-- cheatsheets/project-guide.md: quick commands, architecture summary, and common workflows.
-- cheatsheets/: Hyprland and terminal/editor quick references.
+## High-level architecture (big picture)
+- **`flake.nix`**:
+  - Inputs: `nixpkgs` (unstable), `home-manager`, `stylix`, `nvf`, `nix-flatpak`, `noctalia`, `nixvim`, `zen-browser`, `synfetch`.
+  - Defines system, host, profile, username; constructs `nixosConfigurations`.
+- **`profiles/<profile>/default.nix`**:
+  - Toggles drivers and VM guest services per profile; `nvidia-laptop` and `amd-hybrid` profiles consume Bus IDs from host variables.
+- **`hosts/<hostname>/`**:
+  - `default.nix` imports `hardware.nix` and `host-packages.nix`.
+  - `variables.nix` is the primary control surface (display manager, terminal/browser defaults, waybarChoice, stylix image, 24h clock, Thunar/printing/NFS flags, Bus IDs, etc.).
+- **`modules/core`**:
+  - Composes system modules: boot, flatpak, fonts, hardware, network, nfs, nh, quickshell, overlays, packages, printing, display manager (Ly/SDDM), security (polkit + wrappers), services (PipeWire/SSH/Bluetooth/fstrim), steam, stylix, syncthing, system, thunar, user (Home Manager), virtualization, xserver.
+- **`modules/drivers`**:
+  - AMD, Intel, NVIDIA, NVIDIA Prime, NVIDIA AMD-Hybrid, and VM guest services.
+- **`modules/home`**:
+  - Composes user environment: Hyprland, bar/shell choice (Noctalia-shell or Waybar), Rofi, Yazi, terminals (Kitty/WezTerm/Ghostty/Alacritty toggles), Zsh/Bash config, Git, NVF/Neovim, OBS, swaync, scripts (`zcli`, keybinds-parser, cheatsheets-parser), Stylix, optional Doom Emacs/VSCodium/Helix.
 
-
+## Key development choices
+- **Repo location**: `nh` and `zcli` assume `~/ggos`; if located elsewhere, adjust `modules/core/nh.nix`.
+- **Validation**: Validate changes with `nix flake check` or `nix eval`.
+- **Setuid & Polkit**: Use `security.polkit.enablePkexecWrapper = true` for `pkexec` setuid wrapping, and ensure `programs.zsh.enable = true` is present at system level when user login shell is Zsh.
+- **Theme Isolation**: Disable Stylix target for modules using dedicated custom themes (`stylix.targets.yazi.enable = false`).

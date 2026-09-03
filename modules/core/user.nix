@@ -8,6 +8,7 @@
 }: let
   inherit (import ../../hosts/${host}/variables.nix) gitUsername;
 in {
+  programs.zsh.enable = true;
   imports = [inputs.home-manager.nixosModules.home-manager];
   home-manager = {
     useUserPackages = true;

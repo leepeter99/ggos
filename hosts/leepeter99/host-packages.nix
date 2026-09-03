@@ -7,6 +7,7 @@
     libreoffice-fresh
     opencode
     pwgen
+    slack
     spotify
     zoom-us
   ];
