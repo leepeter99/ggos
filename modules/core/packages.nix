@@ -124,7 +124,6 @@ in {
       hlint # Haskell Linter
       httpie # HTTP Client
       incus # Incus UI agent connect to server
-      pi-coding-agent # cli coding agent by pi.dev
       postman # For API Development
       rustup # For Rust Toolchain
       tig # Terminal Git

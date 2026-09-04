@@ -2,18 +2,15 @@
 
 > ** ✨ A comprehensive history of changes, improvements, and updates to
 > GGOS**
-# 🚀 **Current Release - GGOS v2.6.6**
+# 🚀 **Current Release - GGOS v2.6.5**
 - Niri is now the default session (ly/sddm); Hyprland still selectable at login
 - Rio is the default terminal everywhere (`TERMINAL`/`XDG_TERMINAL_EMULATOR`, DropTerminal, binds)
-- Fixed leepeter99 niri outputs (`eDP-1`/`HDMI-A-2` to match Hyprland)
 - Noctalia + swayidle now start on niri (`graphical-session.target`); swaync only when using waybar
-- NVIDIA laptop: Prime finegrained PM + Intel VAAPI; Prime bus-ID defaults unswapped
 - `trusted-users` follows `username`; SSH is key-only; NFS is client-only; firewall trimmed
 - zcli/`install-ggos.sh` profile name is `amd-nvidia-hybrid`; `add-host` no longer sed's a missing key; `update-host` also sets `username`
 - Dropped unused `nvf` input, dual neovim, openssl-1.1.1w permit, greetd leftover, duplicate packages/scripts
 - Docs parsers point at `~/ggos/cheatsheets` instead of stale ddubsos paths
 
-# 🚀 **Current Release - GGOS v2.6.5**
 - Fixed:
 - `pkexec` failed b/c polkit not enabled
 - `zcli doom sync and upgrade` fixed

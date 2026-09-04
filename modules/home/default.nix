@@ -1,4 +1,8 @@
-{host, lib, ...}: let
+{
+  host,
+  lib,
+  ...
+}: let
   vars = import ../../hosts/${host}/variables.nix;
   inherit
     (vars)
@@ -30,6 +34,7 @@ in {
       ./cli/btop.nix
       ./cli/bottom.nix
       ./cli/cava.nix
+      ./cli/cortex.nix
       ./emoji.nix
       ./eza.nix
       ./fastfetch

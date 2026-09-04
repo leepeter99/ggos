@@ -3,9 +3,10 @@
     claude-code
     code-cursor
     codex
+    cortex
     libreoffice-fresh
     opencode
-    postman
+    pi-coding-agent
     pwgen
     slack
     spotify
