@@ -37,6 +37,8 @@
     - `overlay.nix` is now empty template
     - Reduces rebuild time and better `cacheix` hits
 - Updated:
+  - Removed Redundant fonts from `fonts.nix` 
+  - Changed `wezterm` default font to match new font config
   - Updated yazi to current cfg
   - Set default login mgr to `ly`
   - Hyprland config moved to LUA
