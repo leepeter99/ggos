@@ -39,12 +39,20 @@
       "$modifier,V, Clipboard History, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
     ]
     else [];
+  # Wallpaper binding (only included when barChoice != "noctalia")
+  wallpaperBind =
+    if barChoice != "noctalia"
+    then [
+      "$modifier SHIFT,W, QS Wallpaper Setter, exec, qs-wallpapers-apply"
+    ]
+    else [];
 in {
   wayland.windowManager.hyprland.settings = {
     bindd =
       noctaliaBind
       ++ rofiBind
       ++ rofiClipboardBind
+      ++ wallpaperBind
       ++ [
         # ============= WORKSPACE OVERVIEW =============
         "$modifier CTRL,D, Toggle Dock, exec, dock"
@@ -68,7 +76,6 @@ in {
         "$modifier SHIFT,B, Bluetooth Manager, exec, blueman-manager"
         "$modifier SHIFT,N, Notification Reset, exec, swaync-client -rs"
         "$modifier SHIFT,K, Keybinds Search Tool, exec, qs-keybinds"
-        "$modifier SHIFT,W, QS Wallpaper Setter, exec, qs-wallpapers-apply"
         "$modifier ALT,C, Color Picker, exec, hyprpicker -a"
         "$modifier ALT,M, Audio Control, exec, pavucontrol"
         "$modifier ALT,W, Web Search, exec, web-search"

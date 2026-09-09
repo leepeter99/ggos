@@ -1,5 +1,7 @@
 {
   inputs,
+  config,
+  lib,
   pkgs,
   host,
   ...
@@ -12,13 +14,14 @@
     then
       with pkgs; [
         matugen # color palette generator needed for noctalia-shell
-        app2unit # launcher for noctalia-shell
-        gpu-screen-recorder # needed for nnoctalia-shell
       ]
     else [];
 in {
   programs = {
-    neovim.enable = false;
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
     firefox.enable = false; # Firefox is not installed by default
     hyprland = {
       enable = true; # set this so desktop file is created
@@ -43,6 +46,19 @@ in {
     };
   };
 
+  # Login session list (ly/sddm). The hyprland module registers the whole
+  # pkgs.hyprland package, which also ships hyprland-uwsm.desktop; uwsm is not
+  # installed here and conflicts with the Home Manager systemd session, so
+  # expose only plain Hyprland next to niri (the default session).
+  services.displayManager.sessionPackages = lib.mkForce [
+    config.programs.niri.package
+    (pkgs.runCommand "hyprland-session" {passthru.providedSessions = ["hyprland"];} ''
+      mkdir -p $out/share/wayland-sessions
+      cp ${config.programs.hyprland.package}/share/wayland-sessions/hyprland.desktop \
+        $out/share/wayland-sessions/
+    '')
+  ];
+
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs;
@@ -54,7 +70,6 @@ in {
     ++ [
       alejandra # nix formatter
       amfora # Fancy Terminal Browser For Gemini Protocol
-      appimage-run # Needed For AppImage Support
       brave # Brave Browser
       brightnessctl # For Screen Brightness Control
       cliamp # terminal music player
@@ -69,23 +84,27 @@ in {
       ffmpeg # Terminal Video / Audio Editing
       file-roller # Archive Manager
       fd # find util needed for emacs but good util regardless vs. find
-      gearlever # Manage / run Appimages
+      # gearlever # Manage / run Appimages
       icu # dep for gearlever
       gimp # Great Photo Editor
       gnumake # Needed for emacs
+      gpu-screen-recorder # needed for noctalia-shell
       power-profiles-daemon # needed for noctalia-shell power cycle
       mesa-demos # needed for inxi diag util
       htop # Simple Terminal Based System Monitor
       eog # For Image Viewing
       inxi # CLI System Information Tool
+      isd # system util
       killall # For Killing All Instances Of Programs
       libnotify # For Notifications
       lm_sensors # Used For Getting Hardware Temps
       lolcat # Add Colors To Your Terminal Command Output
       lshw # Detailed Hardware Information
+      lstr # Tree alternative
       mdcat # CLI markdown parser
       mpv # Incredible Video Player
       ncdu # Disk Usage Analyzer With Ncurses Interface
+      netscanner # find devices on network
       netwatch
       nixfmt # Nix Formatter
       nwg-displays # configure monitor configs via GUI
@@ -108,13 +127,18 @@ in {
       unzip # Tool For Handling .zip Files
       usbutils # Good Tools For USB Devices
       upower # noctalia shell battery
-      uwsm # Universal Wayland Session Manager (optional must be enabled)
+      # uwsm # Universal Wayland Session Manager (optional must be enabled)
       v4l-utils # Used For Things Like OBS Virtual Camera
       waybar # waybar
       waypaper # Change wallpaper
       wget # Tool For Fetching Files With Links
       ytmdl # Tool For Downloading Audio From YouTube
-
+      zenith # like htop but more
+      ### top ###
+      cointop # top for ctrypto
+      bottom # top alternative
+      gotop # Another top
+      ttop # top with histogram
       ### Development ###
       bash-language-server # Bash Language Server
       beautysh # Shell Formatter
