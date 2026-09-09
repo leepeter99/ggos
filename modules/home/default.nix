@@ -11,6 +11,7 @@
     ghosttyEnable
     rioEnable
     tmuxEnable
+    herdrEnable
     weztermEnable
     vscodeEnable
     helixEnable
@@ -103,6 +104,11 @@ in {
     ++ (
       if tmuxEnable
       then [./terminals/tmux.nix]
+      else []
+    )
+    ++ (
+      if herdrEnable
+      then [./terminals/herdr.nix]
       else []
     )
     ++ (

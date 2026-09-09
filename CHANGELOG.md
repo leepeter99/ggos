@@ -3,6 +3,14 @@
 > ** ✨ A comprehensive history of changes, improvements, and updates to
 > GGOS**
 # 🚀 **Current Release - GGOS v2.6.5**
+- Login managers no longer list "Hyprland (UWSM)" (uwsm conflicts with the Home Manager
+  systemd session); niri remains the default session, plain Hyprland is still selectable
+- Added `herdr` (agent multiplexer) behind `herdrEnable`, prefix `ctrl+a` like tmux
+- Hyprland + niri: window rule for the Noctalia settings panel (centered, floating); Hyprland also fixed
+  the `IdleInhibit-fullscreen-2` title regex, wallpaper bind only with waybar
+- Firewall: opened extra TCP/UDP ports (587, 3000, 8080, 59010/59011, IPsec 500/4500)
+- Packages: dropped `appimage-run`/`gearlever`/`uwsm`, added `isd`, `lstr`, `netscanner`,
+  `zenith`, `bottom`, `gotop`, `ttop`, `cointop`; `nerd-fonts.fira-code` replaces fira-code
 - Niri is now the default session (ly/sddm); Hyprland still selectable at login
 - Rio is the default terminal everywhere (`TERMINAL`/`XDG_TERMINAL_EMULATOR`, DropTerminal, binds)
 - Noctalia + swayidle now start on niri (`graphical-session.target`); swaync only when using waybar
@@ -28,6 +36,8 @@
     - `overlay.nix` is now empty template
     - Reduces rebuild time and better `cacheix` hits
 - Updated:
+  - Removed Redundant fonts from `fonts.nix` 
+  - Changed `wezterm` default font to match new font config
   - Updated yazi to current cfg
   - Set default login mgr to `ly`
   - Hyprland config moved to LUA

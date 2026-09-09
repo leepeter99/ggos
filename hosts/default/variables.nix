@@ -11,6 +11,7 @@
 
   # Emable/disable bundled applications
   tmuxEnable = true;
+  herdrEnable = false; # Agent multiplexer (tmux-like), https://herdr.dev
   alacrittyEnable = false;
   ghosttyEnable = false;
   rioEnable = true;

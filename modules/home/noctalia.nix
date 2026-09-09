@@ -5,8 +5,13 @@
   ...
 }: let
   system = pkgs.stdenv.hostPlatform.system;
-  noctaliaPkg = inputs.noctalia.packages.${system}.default;
-    noctaliaServiceEntrypoint = pkgs.writeShellScript "noctalia-service-entrypoint" ''
+  # Prefer the upstream flake input when it is declared in flake.nix,
+  # otherwise fall back to the nixpkgs build.
+  noctaliaPkg =
+    if inputs ? noctalia
+    then inputs.noctalia.packages.${system}.default
+    else pkgs.noctalia-shell;
+  noctaliaServiceEntrypoint = pkgs.writeShellScript "noctalia-service-entrypoint" ''
     set -euo pipefail
     ${pkgs.psmisc}/bin/killall -q waybar 2>/dev/null || true
     ${pkgs.procps}/bin/pkill -x waybar 2>/dev/null || true
@@ -15,7 +20,7 @@
     ${pkgs.procps}/bin/pkill -x noctalia 2>/dev/null || true
     ${pkgs.procps}/bin/pkill -f noctalia-shell 2>/dev/null || true
     ${pkgs.coreutils}/bin/sleep 0.4
-    exec ${noctaliaPkg}/bin/noctalia
+    exec ${lib.getExe noctaliaPkg}
   '';
 in {
   home.packages = [noctaliaPkg];
