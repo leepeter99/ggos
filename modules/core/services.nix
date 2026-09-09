@@ -18,7 +18,11 @@
     blueman.enable = true; # Bluetooth Support
     tumbler.enable = true; # Image/video preview
     gnome.gnome-keyring.enable = true;
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      # Keep MagicDNS for *.ts.net. Public DNS goes through systemd-resolved.
+      extraSetFlags = ["--accept-dns=true"];
+    };
 
     smartd = {
       enable =
