@@ -41,12 +41,12 @@ in {
   # public names fail. With it, MagicDNS stays on *.ts.net only.
   services.resolved = {
     enable = true;
-    dnsovertls = "opportunistic";
-    dnssec = "allow-downgrade";
-    fallbackDns = ["1.1.1.1" "1.0.0.1" "8.8.8.8"];
-    extraConfig = ''
-      DNS=1.1.1.1 1.0.0.1
-    '';
+    settings.Resolve = {
+      DNS = ["1.1.1.1" "1.0.0.1"];
+      FallbackDNS = ["1.1.1.1" "1.0.0.1" "8.8.8.8"];
+      DNSOverTLS = "opportunistic";
+      DNSSEC = "allow-downgrade";
+    };
   };
 
   environment.systemPackages = with pkgs; [networkmanagerapplet];
