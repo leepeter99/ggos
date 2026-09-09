@@ -7,7 +7,7 @@
   systemd session); niri remains the default session, plain Hyprland is still selectable
 - Noctalia now comes from nixpkgs (`noctalia-shell`); the upstream flake input is optional
 - Added `herdr` (agent multiplexer) behind `herdrEnable`, prefix `ctrl+a` like tmux
-- Hyprland: window rule for the Noctalia settings panel (centered, floating), fixed
+- Hyprland + niri: window rule for the Noctalia settings panel (centered, floating); Hyprland also fixed
   the `IdleInhibit-fullscreen-2` title regex, wallpaper bind only with waybar
 - Firewall: opened extra TCP/UDP ports (587, 3000, 8080, 59010/59011, IPsec 500/4500)
 - Packages: dropped `appimage-run`/`gearlever`/`uwsm`, added `isd`, `lstr`, `netscanner`,
