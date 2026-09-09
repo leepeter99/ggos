@@ -5,7 +5,6 @@
 # 🚀 **Current Release - GGOS v2.6.5**
 - Login managers no longer list "Hyprland (UWSM)" (uwsm conflicts with the Home Manager
   systemd session); niri remains the default session, plain Hyprland is still selectable
-- Noctalia now comes from nixpkgs (`noctalia-shell`); the upstream flake input is optional
 - Added `herdr` (agent multiplexer) behind `herdrEnable`, prefix `ctrl+a` like tmux
 - Hyprland + niri: window rule for the Noctalia settings panel (centered, floating); Hyprland also fixed
   the `IdleInhibit-fullscreen-2` title regex, wallpaper bind only with waybar
