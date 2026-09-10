@@ -1,15 +1,8 @@
-{
-  lib,
-  ...
-}: {
+{...}: {
   # Link individual source files, leaving build/, user databases, and sync writable.
-  xdg.dataFile = lib.genAttrs (map (name: "fcitx5/rime/${name}") [
-    "default.custom.yaml"
-    "rime_ice.custom.yaml"
-    "personal_phrase.txt"
-  ]) (target: {
-    source = ../../rime + "/${builtins.baseNameOf target}";
-  });
+  xdg.dataFile."fcitx5/rime/default.custom.yaml".source = ../../rime/default.custom.yaml;
+  xdg.dataFile."fcitx5/rime/rime_ice.custom.yaml".source = ../../rime/rime_ice.custom.yaml;
+  xdg.dataFile."fcitx5/rime/personal_phrase.txt".source = ../../rime/personal_phrase.txt;
 
   # The existing profile contained only keyboard-us and Pinyin.
   # Home Manager backs up the previous profile using backupFileExtension.
@@ -21,11 +14,9 @@
 
     [Groups/0/Items/0]
     Name=keyboard-us
-    Layout=
 
     [Groups/0/Items/1]
     Name=rime
-    Layout=
 
     [GroupOrder]
     0=Default

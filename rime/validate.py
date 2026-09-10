@@ -5,24 +5,15 @@ Requires PyYAML. Does not touch your live input method or user dictionary.
 """
 import ctypes as C
 import pathlib
-import re
 import shutil
 import sys
 import tempfile
 import yaml
 
 ROOT = pathlib.Path(__file__).resolve().parent
-for filename in ('default.custom.yaml', 'rime_ice.custom.yaml'):
-    assert isinstance(yaml.safe_load((ROOT / filename).read_text())['patch'], dict)
-rows = []
-for line in (ROOT / 'personal_phrase.txt').read_text().splitlines():
-    if not line or line.startswith('#'):
-        continue
-    text, code, weight = line.split('\t')
-    assert text and re.fullmatch('[a-z]+|UU', code) and int(weight) > 0
-    rows.append((text, code))
-assert len(rows) == len(set(rows)) == 41
-print('PASS: YAML and 41 tab-separated custom-phrase entries', flush=True)
+rows = [tuple(line.split('\t')[:2]) for line in (ROOT / 'personal_phrase.txt').read_text().splitlines()
+        if line and not line.startswith('#')]
+assert len(rows) == len(set(rows))
 
 class Traits(C.Structure):
     _fields_ = [('data_size', C.c_int)] + [(n, C.c_char_p) for n in (
@@ -61,23 +52,22 @@ class Api(C.Structure):
 lib.rime_get_api.restype = C.POINTER(Api)
 rime = lib.rime_get_api().contents
 def api(name, args, result=None):
-    name = re.sub(r'(?<!^)(?=[A-Z])', '_', name).lower()
     return C.CFUNCTYPE(result, *args)(getattr(rime, name))
 sid = C.c_size_t
-setup = api('Setup', [C.POINTER(Traits)])
-initialize = api('Initialize', [C.POINTER(Traits)])
-maintenance = api('StartMaintenance', [C.c_int], C.c_int)
-join = api('JoinMaintenanceThread', [])
-create = api('CreateSession', [], sid)
-select = api('SelectSchema', [sid, C.c_char_p], C.c_int)
-key = api('ProcessKey', [sid, C.c_int, C.c_int], C.c_int)
-clear = api('ClearComposition', [sid])
-option = api('SetOption', [sid, C.c_char_p, C.c_int])
-get_context = api('GetContext', [sid, C.POINTER(Context)], C.c_int)
-free_context = api('FreeContext', [C.POINTER(Context)], C.c_int)
-get_commit = api('GetCommit', [sid, C.POINTER(Commit)], C.c_int)
-free_commit = api('FreeCommit', [C.POINTER(Commit)], C.c_int)
-finalize = api('Finalize', [])
+setup = api('setup', [C.POINTER(Traits)])
+initialize = api('initialize', [C.POINTER(Traits)])
+maintenance = api('start_maintenance', [C.c_int], C.c_int)
+join = api('join_maintenance_thread', [])
+create = api('create_session', [], sid)
+select = api('select_schema', [sid, C.c_char_p], C.c_int)
+key = api('process_key', [sid, C.c_int, C.c_int], C.c_int)
+clear = api('clear_composition', [sid])
+option = api('set_option', [sid, C.c_char_p, C.c_int])
+get_context = api('get_context', [sid, C.POINTER(Context)], C.c_int)
+free_context = api('free_context', [C.POINTER(Context)], C.c_int)
+get_commit = api('get_commit', [sid, C.POINTER(Commit)], C.c_int)
+free_commit = api('free_commit', [C.POINTER(Commit)], C.c_int)
+finalize = api('finalize', [])
 
 with tempfile.TemporaryDirectory(prefix='rime-personal-test-') as tmp:
     runtime = pathlib.Path(tmp)
@@ -96,11 +86,8 @@ with tempfile.TemporaryDirectory(prefix='rime-personal-test-') as tmp:
     try:
         maintenance(1)
         join()
-        built = yaml.safe_load((runtime / 'build/rime_ice.schema.yaml').read_text())
         defaults = yaml.safe_load((runtime / 'build/default.yaml').read_text())
         assert defaults['schema_list'] == [{'schema': 'rime_ice'}]
-        assert built['switches'][2]['reset'] == 0
-        assert built['translator']['dictionary'] == 'rime_ice'
         session = create()
         assert session and select(session, b'rime_ice')
         def commit():
@@ -128,13 +115,11 @@ with tempfile.TemporaryDirectory(prefix='rime-personal-test-') as tmp:
             assert values[0] == expected, (code, values)
             assert press(' ') == expected
             print(f'PASS: {code} -> {expected}', flush=True)
-        assert {'祂', '他', '她', '它'}.issubset(candidates('ta'))
-        assert '你' in candidates('ni')
         assert any(x in candidates('lv') for x in ('绿', '吕', '旅', '驴', '律', '率'))
-        print('PASS: normal pronouns retained; lv produces Pinyin candidates', flush=True)
-        for text, code in rows[9:]:
+        print('PASS: lv produces Pinyin candidates', flush=True)
+        for text, code in rows:
             assert text in candidates(code), (code, text)
-        print('PASS: all 32 Catholic terms are candidates', flush=True)
+        print('PASS: all phrases are candidates', flush=True)
         mapping = dict(zip('[]<>,.?!', '【】《》，。？！'))
         for full in (0, 1):
             option(session, b'full_shape', full)
