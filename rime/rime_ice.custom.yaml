@@ -1,0 +1,31 @@
+# Personal changes only; never edit the upstream Ice schema.
+patch:
+  "switches/@0/reset": 0 # Chinese mode
+  "switches/@1/reset": 0 # Chinese punctuation
+  "switches/@2/reset": 0 # Simplified Chinese
+  "switches/@4/reset": 0 # Half-width Latin letters
+  "custom_phrase/user_dict": personal_phrase
+  "pin_cand_filter/+":
+    - "ta\t祂 他 她 它"
+    - "ni\t祢 你"
+    - "uu\tü"
+    - "UU\tÜ"
+  # Free brackets from Ice's select-first/last-character shortcuts.
+  "key_binder/select_first_character": ""
+  "key_binder/select_last_character": ""
+  "punctuator/half_shape/[": { commit: "【" }
+  "punctuator/half_shape/]": { commit: "】" }
+  "punctuator/half_shape/<": { commit: "《" }
+  "punctuator/half_shape/>": { commit: "》" }
+  "punctuator/half_shape/,": { commit: "，" }
+  "punctuator/half_shape/.": { commit: "。" }
+  "punctuator/half_shape/?": { commit: "？" }
+  "punctuator/half_shape/!": { commit: "！" }
+  "punctuator/full_shape/[": { commit: "【" }
+  "punctuator/full_shape/]": { commit: "】" }
+  "punctuator/full_shape/<": { commit: "《" }
+  "punctuator/full_shape/>": { commit: "》" }
+  "punctuator/full_shape/,": { commit: "，" }
+  "punctuator/full_shape/.": { commit: "。" }
+  "punctuator/full_shape/?": { commit: "？" }
+  "punctuator/full_shape/!": { commit: "！" }

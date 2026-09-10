@@ -1,0 +1,5 @@
+# Nixpkgs names Rime Ice's upstream default.yaml rime_ice_suggestion.yaml.
+patch:
+  __include: rime_ice_suggestion:/
+  schema_list:
+    - schema: rime_ice

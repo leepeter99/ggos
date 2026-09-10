@@ -52,6 +52,7 @@ in {
       ./editors/nixvim.nix
       ./editors/nano.nix
       ./rofi
+      ./rime.nix
       ./qt.nix
       ./scripts
       ./scripts/gemini-cli.nix

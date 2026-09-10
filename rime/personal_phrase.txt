@@ -1,0 +1,46 @@
+# Rime table
+# coding: utf-8
+#@/db_name	personal_phrase.txt
+#@/db_type	tabledb
+# text<TAB>code<TAB>weight; full Pinyin without spaces or tones.
+祂	ta	100
+祢	ni	100
+ü	uu	100
+Ü	UU	100
+他	ta	90
+她	ta	80
+它	ta	70
+你	ni	90
+您	nin	100
+天主	tianzhu	100
+天主教	tianzhujiao	100
+天主圣三	tianzhushengsan	100
+圣父	shengfu	100
+圣子	shengzi	100
+圣神	shengshen	100
+耶稣	yesu	100
+耶稣基督	yesujidu	100
+基督	jidu	100
+圣母	shengmu	100
+圣母玛利亚	shengmumaliya	100
+圣若瑟	shengruose	100
+弥撒	misa	100
+圣体	shengti	100
+圣血	shengxue	100
+圣体圣事	shengtishengshi	100
+圣经	shengjing	100
+福音	fuyin	100
+圣事	shengshi	100
+圣堂	shengtang	100
+教会	jiaohui	100
+教宗	jiaozong	100
+枢机	shuji	100
+主教	zhujiao	100
+神父	shenfu	100
+修女	xiunv	100
+玫瑰经	meiguijing	100
+天主经	tianzhujing	100
+圣母经	shengmujing	100
+圣号经	shenghaojing	100
+亚肋路亚	yaleluya	100
+阿们	amen	100

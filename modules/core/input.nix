@@ -3,12 +3,10 @@
     type = "fcitx5";
     enable = true;
     fcitx5 = {
+      # NixOS's wrapper includes the config tool and GTK/Qt 5/6 integration.
       addons = with pkgs; [
         fcitx5-nord # a color theme
-        qt6Packages.fcitx5-chinese-addons
-        qt6Packages.fcitx5-configtool
-        fcitx5-gtk
-        qt6Packages.fcitx5-with-addons
+        (fcitx5-rime.override {rimeDataPkgs = [rime-ice];})
       ];
       # Enable Wayland frontend for better Hyprland compatibility
       waylandFrontend = true;
@@ -21,9 +19,4 @@
     SDL_IM_MODULE = "fcitx";
     GLFW_IM_MODULE = "ibus";
   };
-
-  # Add related packages
-  environment.systemPackages = with pkgs; [
-    libsForQt5.fcitx5-qt
-  ];
 }

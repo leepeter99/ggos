@@ -1,0 +1,26 @@
+# Runtime data belongs in the frontend's user-data directory.
+build/
+sync/
+*.userdb/
+*.userdb.kct
+*.userdb.txt
+*.userdb*
+installation.yaml
+user.yaml
+*.bin
+*.reverse.bin
+*.table.bin
+*.prism.bin
+*.log
+*.log.*
+*.tmp
+*.bak
+*.backup
+*.old
+*.swp
+*.swo
+*~
+.DS_Store
+__pycache__/
+.cache/
+cache/
