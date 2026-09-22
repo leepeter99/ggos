@@ -14,13 +14,12 @@
     # nix-flatpak declares no nixpkgs input, so nothing to follow.
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
-    # Upstream Noctalia (nixpkgs lags several months behind). Comment this
-    # block out to fall back to pkgs.noctalia-shell; modules/home/noctalia.nix
-    # picks whichever is available.
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # noctalia-shell comes from nixpkgs; uncomment to track upstream instead
+    # (modules/home/noctalia.nix picks the input automatically when present).
+    # noctalia = {
+    #   url = "github:noctalia-dev/noctalia";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -56,9 +55,9 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    host = "leepeter99";
-    profile = "nvidia-laptop";
-    username = "leepeter99";
+    host = "helloworld74";
+    profile = "nvidia";
+    username = "helloworld74";
 
     # Deduplicate nixosConfigurations while preserving the top-level 'profile'
     mkNixosConfig = gpuProfile:
