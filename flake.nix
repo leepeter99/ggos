@@ -26,6 +26,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # TEMPORARY: track Claude Code upstream instead of the nixpkgs build.
+    # hosts/*/host-packages.nix picks this input up; drop this input and
+    # restore the commented `claude-code` line there to go back to nixpkgs.
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Google Antigravity (IDE)
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";
