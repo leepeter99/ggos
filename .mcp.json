@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "cortex": {
+      "args": [
+        "serve",
+        "--project-dir",
+        "/home/leepeter99/ggos"
+      ],
+      "command": "cortex-local"
+    }
+  }
+}

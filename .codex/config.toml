@@ -1,0 +1,5 @@
+[mcp_servers]
+
+[mcp_servers.cortex]
+command = "cortex-local"
+args = ["serve", "--project-dir", "/home/leepeter99/ggos"]
