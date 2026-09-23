@@ -4,7 +4,7 @@
     code-cursor
     codex
     cortex
-    libreoffice-fresh
+    onlyoffice-desktopeditors
     opencode
     pi-coding-agent
     pwgen
