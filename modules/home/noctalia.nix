@@ -10,7 +10,7 @@
   noctaliaPkg =
     if inputs ? noctalia
     then inputs.noctalia.packages.${system}.default
-    else pkgs.noctalia-shell;
+    else pkgs.noctalia;
   noctaliaServiceEntrypoint = pkgs.writeShellScript "noctalia-service-entrypoint" ''
     set -euo pipefail
     ${pkgs.psmisc}/bin/killall -q waybar 2>/dev/null || true
