@@ -24,12 +24,13 @@
           cmakeFlags = (old.cmakeFlags or []) ++ ["-DENABLE_WERROR=OFF"];
         });
       herdr = prev.herdr.overrideAttrs (old: {
-        # GNU ld rejects overlapping unwind entries in the bundled Ghostty library.
-        nativeBuildInputs = (old.nativeBuildInputs or []) ++ [prev.llvmPackages.lld];
+        # binutils 2.46 errors on overlapping FDEs in zig's libghostty-vt
+        # when rustc passes --eh-frame-hdr. lld then dies on a zig 0.16
+        # compiler_rt relocation, so stay on bfd and skip the hdr index.
         env =
           (old.env or {})
           // {
-            RUSTFLAGS = (old.env.RUSTFLAGS or "") + " -C link-arg=-fuse-ld=lld";
+            RUSTFLAGS = (old.env.RUSTFLAGS or "") + " -C link-arg=-Wl,--no-eh-frame-hdr";
           };
       });
       obs-studio-plugins =
