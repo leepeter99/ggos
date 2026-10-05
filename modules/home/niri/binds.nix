@@ -45,6 +45,7 @@ in {
         Mod+G                { spawn "gimp"; }
         Mod+O                { spawn "obs"; }
         Mod+T                { spawn "thunar"; }
+        Mod+B                ( spawn "brave-origin"; )
         Mod+W                { spawn "${browser}"; }
         Mod+Y                { spawn "${terminal}" "-e" "yazi"; }
         Mod+Z                { spawn "zoom-us"; }
