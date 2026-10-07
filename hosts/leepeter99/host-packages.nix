@@ -5,13 +5,12 @@
 }: {
   environment.systemPackages =
     [
-      # TEMPORARY: Claude Code from the upstream flake (github:sadjow/claude-code-nix)
-      # instead of nixpkgs, which lags behind. To revert: delete this entry, the
-      # `claude-code` input in flake.nix, and uncomment `claude-code` below.
-      inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # To track upstream, uncomment this entry and the input in flake.nix,
+      # then comment out `claude-code` below.
+      # inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     ++ (with pkgs; [
-      # claude-code # temporarily sourced from the upstream flake above
+      claude-code
       code-cursor
       codex
       cortex

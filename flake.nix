@@ -26,13 +26,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # TEMPORARY: track Claude Code upstream instead of the nixpkgs build.
-    # hosts/*/host-packages.nix picks this input up; drop this input and
-    # restore the commented `claude-code` line there to go back to nixpkgs.
-    claude-code = {
-      url = "github:sadjow/claude-code-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Claude Code comes from nixpkgs; uncomment this input and the upstream
+    # package in hosts/*/host-packages.nix to track upstream instead.
+    # claude-code = {
+    #   url = "github:sadjow/claude-code-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # Google Antigravity (IDE)
     antigravity-nix = {
@@ -63,9 +62,9 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    host = "leepeter99";
-    profile = "nvidia-laptop";
-    username = "leepeter99";
+    host = "helloworld74";
+    profile = "nvidia";
+    username = "helloworld74";
 
     # Deduplicate nixosConfigurations while preserving the top-level 'profile'
     mkNixosConfig = gpuProfile:
