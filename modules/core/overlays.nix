@@ -1,5 +1,6 @@
 {...}: {
   nixpkgs.overlays = [
+    (import ./typescript-language-server.nix)
     (final: prev: {
       obs-studio-plugins =
         prev.obs-studio-plugins

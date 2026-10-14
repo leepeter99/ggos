@@ -11,7 +11,13 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
-    nixpkgs.source = inputs.nixpkgs;
+    # nixvim imports this source itself, so NixOS overlays do not apply.
+    nixpkgs = {
+      source = inputs.nixpkgs;
+      overlays = [
+        (import ../../core/typescript-language-server.nix)
+      ];
+    };
     viAlias = true;
     vimAlias = true;
 
