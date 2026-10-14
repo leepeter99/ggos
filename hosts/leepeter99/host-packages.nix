@@ -5,12 +5,12 @@
 }: {
   environment.systemPackages =
     [
-      # To track upstream, uncomment this entry and the input in flake.nix,
-      # then comment out `claude-code` below.
-      # inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # Upstream Claude Code. For the nixpkgs build, comment this, uncomment
+      # `claude-code` below, and comment the input in flake.nix.
+      inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     ++ (with pkgs; [
-      claude-code
+      # claude-code
       code-cursor
       codex
       cortex
