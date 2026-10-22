@@ -62,14 +62,13 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    host = "leepeter99";
-    profile = "nvidia-laptop";
-    username = "leepeter99";
+    host = "helloworld74";
+    profile = "nvidia";
+    username = "helloworld74";
 
     # Deduplicate nixosConfigurations while preserving the top-level 'profile'
     mkNixosConfig = gpuProfile:
       nixpkgs.lib.nixosSystem {
-        inherit system;
         specialArgs = {
           inherit inputs;
           inherit username;

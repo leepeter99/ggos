@@ -48,6 +48,7 @@ in {
         Mod+B                { spawn "brave-origin"; }
         Mod+W                { spawn "${browser}"; }
         Mod+Y                { spawn "${terminal}" "-e" "yazi"; }
+        Mod+Alt+S          { spawn "slack"; }
         Mod+Z                { spawn "zoom-us"; }
         Mod+Alt+B            { spawn "hyprpicker" "-a"; }
         Mod+Alt+C            { spawn "hyprpicker" "-a"; }
