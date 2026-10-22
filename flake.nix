@@ -69,7 +69,6 @@
     # Deduplicate nixosConfigurations while preserving the top-level 'profile'
     mkNixosConfig = gpuProfile:
       nixpkgs.lib.nixosSystem {
-        inherit system;
         specialArgs = {
           inherit inputs;
           inherit username;
