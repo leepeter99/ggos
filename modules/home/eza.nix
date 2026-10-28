@@ -2,7 +2,7 @@
 {
   programs.eza = {
     enable = true;
-    icons = "auto";
+    icons = "always";
     enableBashIntegration = true;
     enableZshIntegration = true;
     enableFishIntegration = true;
@@ -13,10 +13,9 @@
       "--no-quotes"
       "--header" # Show header row
       "--git-ignore"
-      "--icons=always"
       # "--time-style=long-iso" # ISO 8601 extended format for time
       "--classify" # append indicator (/, *, =, @, |)
-      "--hyperlink" # make paths clickable in some terminals
+      "--hyperlink=auto" # make paths clickable; bare --hyperlink swallows the next arg (e.g. `ls dir`)
     ];
   };
   # Aliases to make `ls`, `ll`, `la` use eza
