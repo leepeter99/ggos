@@ -8,6 +8,16 @@
 }: let
   vars = import ../../hosts/${host}/variables.nix;
   inherit (vars) barChoice;
+
+  # Local build of synfetch: the upstream flake reads the deprecated
+  # `stdenv.isLinux`, which prints an eval warning on every rebuild.
+  # Go back to `inputs.synfetch.packages.<system>.default` once upstream is fixed.
+  synfetch = pkgs.writeShellApplication {
+    name = "synfetch";
+    runtimeInputs = with pkgs; [coreutils ncurses pciutils procps];
+    checkPhase = "";
+    text = builtins.readFile "${inputs.synfetch}/synfetch";
+  };
   # Noctalia-specific packages
   noctaliaPkgs =
     if barChoice == "noctalia"
@@ -64,7 +74,7 @@ in {
   environment.systemPackages = with pkgs;
     [
       awww
-      inputs.synfetch.packages.${pkgs.stdenv.hostPlatform.system}.default
+      synfetch
     ]
     ++ noctaliaPkgs
     ++ [
