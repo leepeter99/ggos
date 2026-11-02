@@ -14,7 +14,6 @@
       code-cursor
       codex
       cortex
-      onlyoffice-desktopeditors
       opencode
       pi-coding-agent
       pwgen
