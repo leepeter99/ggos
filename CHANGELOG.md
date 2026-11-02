@@ -8,7 +8,10 @@
 - Fixed eval warnings: `programs.rofi.extraConfig` → `settings`, removed renamed
   `hardware.logitech.wireless.enableGraphical`, `pkgs.system` → `pkgs.stdenv.hostPlatform.system`
   (antigravity), dropped `system` arg to `nixosSystem` (`hardware.nix` sets `nixpkgs.hostPlatform`)
-  - Remaining `stdenv.isLinux` warning comes from the upstream `synfetch` flake
+  - `stdenv.isLinux` warning from the upstream `synfetch` flake: `packages.nix` now builds
+    synfetch locally from the input's script (ported from ZaneyOS); revert once upstream is fixed
+- Removed `onlyoffice-desktopeditors` from both hosts: it was the only package pulling in
+  `gtk2`, which nixpkgs now marks broken ahead of its removal (nixpkgs#410814)
 - Login managers no longer list "Hyprland (UWSM)" (uwsm conflicts with the Home Manager
   systemd session); niri remains the default session, plain Hyprland is still selectable
 - Noctalia now comes from nixpkgs (`noctalia-shell`); the upstream flake input is optional
