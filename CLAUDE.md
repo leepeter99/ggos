@@ -73,6 +73,8 @@ Composition chain: `flake.nix` → `profiles/<profile>/default.nix` → imports 
 
 - **`modules/home/`** — the Home Manager layer, composed by its `default.nix`. Subdirectories: `cli/` (bat, btop, fzf, gh, git, lazygit, …), `editors/` (nixvim, helix, vscode, antigravity, doom-emacs), `terminals/` (kitty always-on; alacritty, ghostty, rio, wezterm, tmux conditional), `hyprland/` and `niri/` (each with binds, env, exec-once, windowrules, and many `animations-*.nix` presets), `rofi/`, `scripts/`, `waybar/` (many preset themes), `wlogout/`, `yazi/`. The bar module is selected at import time: `noctalia.nix` when `barChoice = "noctalia"`, otherwise the `waybarChoice` path.
 
+- **`modules/core/overlays.nix`** + **`pkgs/`** — local packages exposed via overlay (currently `pkgs.cortex` from `pkgs/cortex`, a pinned npm binary).
+
 - **`modules/drivers/`** — GPU/VM driver options consumed by profiles (`drivers.amdgpu`, `drivers.intel`, `drivers.nvidia`, `drivers.nvidia-prime`, `vm.guest-services`).
 
 ## Key patterns
@@ -108,5 +110,22 @@ To switch themes, uncomment the desired line (only one may be active at a time).
 ### Doom Emacs workflow
 
 Set `doomEmacsEnable = true` in `variables.nix`, run `zcli rebuild` (so the Emacs package is installed), then run `zcli doom install` to clone and configure Doom.
+
+## Workflow
+
+Each change goes on a branch → PR → merge into `main`, with a bullet added to the current release section of `CHANGELOG.md`. `.cortex/` is per-machine Cortex state and is gitignored.
+
+## Porting from upstream ZaneyOS
+
+Upstream diverged in ways that make patches non-literal:
+- Upstream Hyprland config is Lua (`modules/home/hyprland/lua/`); GGOS keeps it in Nix (`modules/home/hyprland/hyprland.nix`). Translate settings, and check the key exists in the pinned Hyprland version first — an unknown key is a config error.
+- `modules/home/xdg.nix` keeps its `xdg.portal` block (upstream deleted theirs): niri needs the gnome + gtk portals listed there for ScreenCast.
+- Pending: once Hyprland ≥ 0.57 lands, the `vm` profile needs `quirks.skip_non_kms_dmabuf_formats = false;` (virgl otherwise exposes no alpha EGLConfig and kitty/alacritty fail to start).
+
+## Eval failures and warnings
+
+- **Broken-package refusal** (e.g. `gtk+-2.24.33` "has problems: broken"): find the dependent with `extendModules` setting `nixpkgs.config.problems.handlers."<pname>".broken = "ignore"`, then `nix why-depends --derivation <toplevel.drv> <pkg.drv>`. Prefer removing or Flatpak-ing the dependent over a permanent handler override (this is why `onlyoffice-desktopeditors` was dropped).
+- `synfetch` is built locally in `modules/core/packages.nix` to avoid the upstream flake's `stdenv.isLinux` warning; switch back to `inputs.synfetch.packages.<system>.default` once upstream is fixed.
+- Verify both hosts after a change: `nix eval --raw .#nixosConfigurations.<profile>.config.system.build.toplevel.drvPath` for `nvidia-laptop` and `nvidia`.
 
 Note: `WARP.md` covers the same ground but is partially stale (it predates the switch to nixvim and the alejandra formatter). `zcli.md` has full zcli documentation.
