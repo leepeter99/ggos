@@ -36,7 +36,8 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      jack.enable = true;
+      # `jack.enable` is deprecated (global LD_LIBRARY_PATH impurity, eval warning).
+      # For JACK clients, add `pkgs.pipewire.jack` and run them as `pw-jack <app>`.
       extraConfig.pipewire."92-low-latency" = {
         "context.properties" = {
           "default.clock.rate" = 48000;

@@ -9,7 +9,8 @@ _: {
       show_link = false
       scrollbar = "never"
       auto_redirect = false
-      http = 'brave'
+      # http = 'brave'
+      http = 'default'
       search = "gemini://gus.guru/search"
       max_width = 140
       page_max_size = 2097152  # 2 MiB

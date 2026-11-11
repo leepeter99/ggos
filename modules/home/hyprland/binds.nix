@@ -61,7 +61,8 @@ in {
         "$modifier,Return, Terminal, exec, ${terminal}"
         "$modifier SHIFT,T, Dropdown Terminal, exec, sh -lc 'DropTerminal'"
         # ============= APPLICATION LAUNCHERS =============
-        "$modifier,B, Brave Browser, exec, brave"
+        # "$modifier,B, Brave Browser, exec, brave"
+        "$modifier,B, Web Browser, exec, ${browser}"
         "$modifier,G, GIMP, exec, gimp"
         "$modifier,M, Spotify, exec, spotify"
         "$modifier,O, OBS Studio, exec, obs"

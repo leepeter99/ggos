@@ -3,6 +3,9 @@
 > ** ✨ A comprehensive history of changes, improvements, and updates to
 > GGOS**
 # 🚀 **Current Release - GGOS v2.6.5**
+- Flake update: commented out `brave-origin` (dropped from nixpkgs); Hyprland/niri `Super+B` now
+  launch the host `browser`, amfora opens http links with the system default
+- Removed deprecated `services.pipewire.jack.enable` (eval warning); use `pw-jack` for JACK apps
 - Overlays: dropped `typescript-language-server` (pnpmDeps hash) and `obs-move-transition`
   (`-Werror`) fixes, both fixed upstream; `overlays.nix` now only provides `cortex`
 - Fixed eval warnings: `programs.rofi.extraConfig` → `settings`, removed renamed
