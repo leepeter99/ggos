@@ -17,6 +17,7 @@
     helixEnable
     doomEmacsEnable
     antigravityEnable
+    freebuffCliEnable
     ;
   waybarChoice = vars.waybarChoice or ./waybar/waybar-jak-catppuccin-v2.nix;
   barModule =
@@ -56,6 +57,8 @@ in {
       ./qt.nix
       ./scripts
       ./scripts/gemini-cli.nix
+      # freebuff coding agent wrapper (npx); nix-ld is enabled from the same toggle
+      ./scripts/freebuff-cli.nix
       ./stylix.nix
       ./swappy.nix
       ./tealdeer.nix
@@ -122,4 +125,6 @@ in {
       then [./terminals/rio.nix]
       else []
     );
+
+  programs.freebuff-cli.enable = freebuffCliEnable;
 }

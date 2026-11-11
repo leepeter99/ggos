@@ -43,6 +43,10 @@ in {
     niri.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
+    # freebuff-cli's npm launcher downloads a prebuilt generic ELF and spawns it
+    # itself, so there is nothing to patchelf; nix-ld lets it start. Only needed
+    # on hosts that enable the wrapper.
+    nix-ld.enable = vars.freebuffCliEnable;
     fuse.userAllowOther = true;
     direnv = {
       enable = true;
