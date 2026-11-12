@@ -36,7 +36,11 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      jack.enable = true;
+      # `jack.enable` is deprecated: it exports pipewire's jack libraries on a
+      # global LD_LIBRARY_PATH, which is impure and now emits an eval warning.
+      # For JACK clients, run them through the `pw-jack` wrapper instead: add
+      # `pkgs.pipewire.jack` to the packages and start the app as
+      # `pw-jack <app>`.
       extraConfig.pipewire."92-low-latency" = {
         "context.properties" = {
           "default.clock.rate" = 48000;

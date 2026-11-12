@@ -22,6 +22,8 @@
   helixEnable = true;
   #To install: Enable here, zcli rebuild, then run zcli doom install
   doomEmacsEnable = false;
+  # freebuff coding agent (freebuff-cli wrapper); also enables nix-ld
+  freebuffCliEnable = true;
 
   # Python development tools are included by default
 

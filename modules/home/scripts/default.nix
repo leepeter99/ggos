@@ -3,8 +3,19 @@
   pkgs,
   username,
   profile,
+  host,
   ...
-}: {
+}: let
+  vars = import ../../../hosts/${host}/variables.nix;
+in {
+  imports = [
+    # freebuff coding agent wrapper; switched on per host with
+    # `freebuffCliEnable` in hosts/<host>/variables.nix (which also enables nix-ld)
+    ./freebuff-cli.nix
+  ];
+
+  programs.freebuff-cli.enable = vars.freebuffCliEnable or false;
+
   home.packages = [
     (import ./emopicker9000.nix {inherit pkgs;})
     (import ./hm-find.nix {inherit pkgs;})

@@ -43,6 +43,11 @@ in {
     niri.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
+    # freebuff-cli's npm launcher downloads a prebuilt binary and spawns it
+    # itself, so there is nothing for Nix to patchelf at build time. nix-ld
+    # installs its shim as the system loader, which is what lets that binary
+    # start; it is only needed on hosts that enable the wrapper.
+    nix-ld.enable = vars.freebuffCliEnable or false;
     fuse.userAllowOther = true;
     direnv = {
       enable = true;
@@ -110,7 +115,6 @@ in {
       lm_sensors # Used For Getting Hardware Temps
       lolcat # Add Colors To Your Terminal Command Output
       lshw # Detailed Hardware Information
-      lstr # Tree alternative
       mdcat # CLI markdown parser
       mpv # Incredible Video Player
       ncdu # Disk Usage Analyzer With Ncurses Interface
