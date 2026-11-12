@@ -19,7 +19,7 @@
 - Hyprland + niri: window rule for the Noctalia settings panel (centered, floating); Hyprland also fixed
   the `IdleInhibit-fullscreen-2` title regex, wallpaper bind only with waybar
 - Firewall: opened extra TCP/UDP ports (587, 3000, 8080, 59010/59011, IPsec 500/4500)
-- Packages: dropped `appimage-run`/`gearlever`/`uwsm`, added `isd`, `lstr`, `netscanner`,
+- Packages: dropped `appimage-run`/`gearlever`/`uwsm`, added `isd`, `netscanner`,
   `zenith`, `bottom`, `gotop`, `ttop`, `cointop`; `nerd-fonts.fira-code` replaces fira-code
 - Niri is now the default session (ly/sddm); Hyprland still selectable at login
 - Rio is the default terminal everywhere (`TERMINAL`/`XDG_TERMINAL_EMULATOR`, DropTerminal, binds)
@@ -28,6 +28,9 @@
 - zcli/`install-ggos.sh` profile name is `amd-nvidia-hybrid`; `add-host` no longer sed's a missing key; `update-host` also sets `username`
 - Dropped unused `nvf` input, dual neovim, openssl-1.1.1w permit, greetd leftover, duplicate packages/scripts
 - Docs parsers point at `~/ggos/cheatsheets` instead of stale ddubsos paths
+- Removed `lstr` (build failure on the current nixpkgs pin; upstream ZaneyOS dropped it too)
+- Pipewire: dropped deprecated `jack.enable` (eval warning); use `pw-jack` for JACK clients
+- Added `freebuff-cli` wrapper behind `freebuffCliEnable` (also enables `programs.nix-ld`)
 
 - Fixed:
 - `pkexec` failed b/c polkit not enabled
