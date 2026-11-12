@@ -111,27 +111,6 @@
         "type": "github"
       }
     },
-    "claude-code": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": "systems_2"
-      },
-      "locked": {
-        "lastModified": 1794279708,
-        "narHash": "sha256-K+cKtfjmSKhoSfS5nXRR+i8Ija/0htXiLc3o25JXKTU=",
-        "owner": "sadjow",
-        "repo": "claude-code-nix",
-        "rev": "36dfedaa4451a8beb69fe651b1f25920a74c7e5a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sadjow",
-        "repo": "claude-code-nix",
-        "type": "github"
-      }
-    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -394,7 +373,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_3"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1794408140,
@@ -439,7 +418,6 @@
       "inputs": {
         "alejandra": "alejandra",
         "antigravity-nix": "antigravity-nix",
-        "claude-code": "claude-code",
         "home-manager": "home-manager",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs",
@@ -479,7 +457,7 @@
           "nixpkgs"
         ],
         "nur": "nur",
-        "systems": "systems_4",
+        "systems": "systems_3",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
         "tinted-tmux": "tinted-tmux",
@@ -537,21 +515,6 @@
       }
     },
     "systems_2": {
-      "locked": {
-        "lastModified": 1791244623,
-        "narHash": "sha256-uuanbkFk8a313Zfrxdcz8Us/yQtaxNnKJtX8v0ZPpd8=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "d36eeed142f88b5a636f2e3856a53c61654cf29b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_3": {
       "flake": false,
       "locked": {
         "lastModified": 1791244623,
@@ -568,7 +531,7 @@
         "type": "github"
       }
     },
-    "systems_4": {
+    "systems_3": {
       "locked": {
         "lastModified": 1774449309,
         "narHash": "sha256-brhZ8DmuGtzkCYHJg4HEd602amKm89Y9ytsFZ5uWD1w=",
