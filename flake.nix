@@ -33,6 +33,14 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
+    # Tracks upstream Codex releases via sadjow's flake (like Claude Code).
+    # Comment this input and switch
+    # hosts/*/host-packages.nix back to pkgs.codex for the nixpkgs build.
+    codex = {
+      url = "github:sadjow/codex-cli-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Google Antigravity (IDE)
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";

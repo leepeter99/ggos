@@ -3,6 +3,7 @@
 > ** ✨ A comprehensive history of changes, improvements, and updates to
 > GGOS**
 # 🚀 **Current Release - GGOS v2.6.5**
+- Codex now uses upstream releases via `sadjow/codex-cli-nix` on both hosts; the nixpkgs entries remain commented for rollback
 - Overlays: dropped `typescript-language-server` (pnpmDeps hash) and `obs-move-transition`
   (`-Werror`) fixes, both fixed upstream; `overlays.nix` now only provides `cortex`
 - Fixed eval warnings: `programs.rofi.extraConfig` → `settings`, removed renamed
