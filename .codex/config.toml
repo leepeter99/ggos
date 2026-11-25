@@ -3,3 +3,6 @@
 [mcp_servers.cortex]
 command = "cortex-local"
 args = ["serve", "--project-dir", "/home/leepeter99/ggos"]
+
+[mcp_servers.cortex.tools.check_drift]
+approval_mode = "approve"

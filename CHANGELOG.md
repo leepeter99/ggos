@@ -43,6 +43,8 @@
     > :tools lsp
       ! Couldn't find npm. `lsp-mode' needs npm to auto-install some LSP servers. For more information, see https://emacs-lsp.github.io/lsp-mode/page/languages/.
   ``
+- Fixed rebuilds by removing the obsolete Stylix Wayprompt target setting.
+
 - Added:
   - Overlay for dwarfs build error
 - Removed:
